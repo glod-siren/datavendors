@@ -30,12 +30,11 @@ async function beforeAll(graphId, graphModel, graphSelection) {
     return await Promise.resolve(invokedItems(graphSelection))
         .then(async function () {
             console.log("Finished ChainAlysis Invoke")
-            let searchResults = await f.executeEsSearch("web-service-chainalysis-iapi-cluster_combined_info-results-cluster", "", query, 10000000000)
+            let searchResults = await f.executeEsSearch("web-service-chainalysis-iapi-cluster_combined_info-results-cluster", "", query, 500)
             await Promise.resolve(searchResults)
                 .then(async function (searchResults) {
                     console.log(searchResults.hits.hits)
                     await Promise.resolve(f.graphCounts.executeCounts(graphId))
-                    //     .then(async function() {
                     searchResults.hits.hits.map(hit => {
                         entities.push(`web-service-chainalysis-iapi-cluster_combined_info-results-cluster/_doc/${hit._id}`)
                     })
@@ -45,7 +44,6 @@ async function beforeAll(graphId, graphModel, graphSelection) {
                             console.log(results)
                             await Promise.resolve(f.addResultsToGraph(graphId, graphSelection, results))
                         })
-                    //})
                 })
         })
 }
