@@ -5,7 +5,8 @@ export default class IpObservations extends ServiceDefinition {
     readonly inputSchema: InputSchema = {
         ip: { type: 'text', required: true },
         startTime: { type: 'date', required: false },
-        endTime: { type: 'date', required: false }
+        endTime: { type: 'date', required: false },
+        page: { type: 'date', required: false },
     };
     readonly outputConfiguration: OutputConfiguration = {
         observation: {
@@ -15,14 +16,21 @@ export default class IpObservations extends ServiceDefinition {
             'geo_location': 'geo_point',
             'ipAddress': 'keyword',
             'port': 'keyword'
+        },
+        pagination: {
+            'nextPage': 'keyword'
         }
     };
     async invoke(inputs: {
         ip: string,
         startTime: string,
-        endTime: string
+        endTime: string,
+        page: string,
     }): Promise<DataIndexResults> {
-        let obs_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=200`
+        let obs_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=100`
+        if (inputs.page) {
+            obs_url + obs_url + `&page=${inputs.page}`
+          }
         if (inputs.startTime) {obs_url = obs_url + `&startTime=${inputs.startTime}`}
         if (inputs.endTime) {obs_url = obs_url + `&endTime=${inputs.endTime}`}
         const obs_config: AxiosRequestConfig = {
@@ -35,12 +43,13 @@ export default class IpObservations extends ServiceDefinition {
         };
         const obs_response: AxiosResponse = await axios(obs_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
         let truncated = false
+        let nextPage = '';
         if (obs_response.data.nextPage != null) {
             let page = obs_response.data.nextPage
             let lastResult = { nextPage: '' };
             do {
                 try {
-                    let sub_url = obs_url + `&page=${page}`
+                    let sub_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=100` + `&page=${page}`
                     const sub_config: AxiosRequestConfig = {
                         method: 'get',
                         url: sub_url,
@@ -55,7 +64,8 @@ export default class IpObservations extends ServiceDefinition {
                 } catch { new WebServiceError('pagination error') }
             } while (lastResult.nextPage !== null && obs_response.data.items < 5000)
             if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
-                truncated = true
+                truncated = true;
+                nextPage = lastResult.nextPage;
             }
         }
         for (let y = 0; y < obs_response.data.items.length; y++) {
@@ -79,7 +89,10 @@ export default class IpObservations extends ServiceDefinition {
             })
         }
         return {
-            observation: obs_response.data.items
+            observation: obs_response.data.items,
+            pagination: [{
+                nextPage: nextPage
+            }]
         }
     }
 }

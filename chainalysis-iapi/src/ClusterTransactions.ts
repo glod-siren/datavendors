@@ -8,6 +8,7 @@ export default class ClusterTransactions extends ServiceDefinition {
         counterparty: { type: 'text', required: false },
         startTime: { type: 'date', required: false },
         endTime: { type: 'date', required: false },
+        page: { type: 'date', required: false },
     };
     readonly outputConfiguration: OutputConfiguration = {
         transaction: {
@@ -25,6 +26,9 @@ export default class ClusterTransactions extends ServiceDefinition {
                     }
                 }
             }
+        },
+        pagination: {
+            'nextPage': 'keyword'
         }
     };
     async invoke(inputs: {
@@ -33,11 +37,15 @@ export default class ClusterTransactions extends ServiceDefinition {
         counterparty: string,
         startTime: string,
         endTime: string,
+        page: string,
     }): Promise<DataIndexResults> {
-        let transaction_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/transactions?size=200`
-        if (inputs.startTime) {transaction_url = transaction_url + `&startTime=${inputs.startTime}`}
-        if (inputs.endTime) {transaction_url = transaction_url + `&endTime=${inputs.endTime}`}
-        if (inputs.counterparty) {transaction_url = transaction_url + `&counterparty=${inputs.counterparty}`}
+        let transaction_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/transactions?size=100`
+        if (inputs.page) {
+            transaction_url + transaction_url + `&page=${inputs.page}`
+        }
+        if (inputs.startTime) { transaction_url = transaction_url + `&startTime=${inputs.startTime}` }
+        if (inputs.endTime) { transaction_url = transaction_url + `&endTime=${inputs.endTime}` }
+        if (inputs.counterparty) { transaction_url = transaction_url + `&counterparty=${inputs.counterparty}` }
         const transaction_config: AxiosRequestConfig = {
             method: 'get',
             url: transaction_url,
@@ -47,13 +55,14 @@ export default class ClusterTransactions extends ServiceDefinition {
             }
         };
         const transaction_response: AxiosResponse = await axios(transaction_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        let truncated = false
+        let truncated = false;
+        let nextPage = '';
         if (transaction_response.data.nextPage != null) {
             let page = transaction_response.data.nextPage
             let lastResult = { nextPage: '' };
             do {
                 try {
-                    let sub_url = transaction_url + `&page=${page}`
+                    let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/transactions?size=100` + `&page=${page}`
                     const sub_config: AxiosRequestConfig = {
                         method: 'get',
                         url: sub_url,
@@ -66,9 +75,10 @@ export default class ClusterTransactions extends ServiceDefinition {
                     lastResult = sub_response.data;
                     transaction_response.data.items.push.apply(transaction_response.data.items, sub_response.data.items)
                 } catch { new WebServiceError('pagination error') }
-            } while (lastResult.nextPage !== null && transaction_response.data.items < 5000)
+            } while (lastResult.nextPage !== null && transaction_response.data.items < 500)
             if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
-                truncated = true
+                truncated = true;
+                nextPage = lastResult.nextPage;
             }
         }
         for (let y = 0; y < transaction_response.data.items.length; y++) {
@@ -101,7 +111,10 @@ export default class ClusterTransactions extends ServiceDefinition {
             } catch { }
         }
         return {
-            transaction: transaction_response.data.items
+            transaction: transaction_response.data.items,
+            pagination: [{
+                nextPage: nextPage
+            }]
         }
     }
 }

@@ -19,16 +19,20 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                 'totalReceivedAmount': 'long',
                 'totalFeesAmount': 'long'
             },
-            'exposure' : {
+            'exposure': {
                 'percentage': 'long',
                 'value': 'long'
             }
+        },
+        pagination: {
+            'nextPage': 'keyword'
         }
     };
     async invoke(inputs: {
         address: string,
         asset: string,
-        outputAsset: string
+        outputAsset: string,
+        page: string
     }): Promise<DataIndexResults> {
         if (!inputs.outputAsset) { inputs.outputAsset = 'NATIVE' }
         let name_url = `https://iapi.chainalysis.com/clusters/${inputs.address}?filterAsset=${inputs.asset}`
@@ -41,7 +45,11 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
             }
         };
         const name_response: AxiosResponse = await axios(name_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        let address_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/addresses?size=200`
+        let address_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/addresses?size=100`
+        if (inputs.page) {
+            address_url + address_url + `&page=${inputs.page}`
+        }
+        if (!inputs.page) { inputs.outputAsset = 'NATIVE' }
         const address_config: AxiosRequestConfig = {
             method: 'get',
             url: address_url,
@@ -51,12 +59,13 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
             }
         };
         const address_response: AxiosResponse = await axios(address_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
+        let nextPage = '';
         if (address_response.data.nextPage != null) {
             let page = address_response.data.nextPage
             let lastResult = { nextPage: '' };
             do {
                 try {
-                    let sub_url = address_url + `&page=${page}`
+                    let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/addresses?size=100` + `&page=${page}`
                     const sub_config: AxiosRequestConfig = {
                         method: 'get',
                         url: sub_url,
@@ -69,7 +78,10 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                     lastResult = sub_response.data;
                     address_response.data.items.push.apply(address_response.data.items, sub_response.data.items)
                 } catch { new WebServiceError('pagination error') }
-            } while (lastResult.nextPage !== null && address_response.data.items.length < 5000)
+            } while (lastResult.nextPage !== null && address_response.data.items.length < 1000)
+            if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
+                nextPage = lastResult.nextPage
+            }
         }
         const denormAddress: string[] = [];
         for (let y = 0; y < address_response.data.items.length; y++) {
@@ -91,7 +103,7 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
         }
         const exposure_paths = ['SENDING', 'RECEIVING', 'SENDING/services', 'RECEIVING/services']
         let exposure: object[] = [];
-        let denormAddressExposure : string[] = [];
+        let denormAddressExposure: string[] = [];
         for (let z = 0; z < exposure_paths.length; z++) {
             let exposure_url = `https://iapi.chainalysis.com/exposures/clusters/${inputs.address}/${inputs.asset}/directions/${exposure_paths[z]}?outputAsset=${inputs.outputAsset}`
             let exposure_config: AxiosRequestConfig = {
@@ -110,9 +122,9 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                         direction: exposure_paths[z],
                     })
                     exposure.push(exposure_response.data.indirectExposure.services[b])
-                    if (exposure_response.data.indirectExposure.services[b].rootAddress) {denormAddressExposure.push(address_response.data.asset + ':' + exposure_response.data.indirectExposure.services[b].rootAddress)}
+                    if (exposure_response.data.indirectExposure.services[b].rootAddress) { denormAddressExposure.push(address_response.data.asset + ':' + exposure_response.data.indirectExposure.services[b].rootAddress) }
                 }
-            } catch {}
+            } catch { }
             try {
                 for (let b = 0; exposure_response.data.directExposure.services.length; b++) {
                     Object.assign(exposure_response.data.directExposure.services[b], {
@@ -120,9 +132,9 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                         direction: exposure_paths[z],
                     })
                     exposure.push(exposure_response.data.directExposure.services[b])
-                    if (exposure_response.data.directExposure.services[b].rootAddress) {denormAddressExposure.push(address_response.data.asset + ':' + exposure_response.data.directExposure.services[b].rootAddress)}
+                    if (exposure_response.data.directExposure.services[b].rootAddress) { denormAddressExposure.push(address_response.data.asset + ':' + exposure_response.data.directExposure.services[b].rootAddress) }
                 }
-            } catch {}
+            } catch { }
             try {
                 for (let b = 0; exposure_response.data.indirectExposure.categories.length; b++) {
                     Object.assign(exposure_response.data.indirectExposure.categories[b], {
@@ -131,7 +143,7 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                     })
                     exposure.push(exposure_response.data.indirectExposure.categories[b])
                 }
-            } catch {}
+            } catch { }
             try {
                 for (let b = 0; exposure_response.data.directExposure.categories.length; b++) {
                     Object.assign(exposure_response.data.directExposure.categories[b], {
@@ -140,7 +152,7 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                     })
                     exposure.push(exposure_response.data.directExposure.categories[b])
                 }
-            } catch {}
+            } catch { }
         }
         return {
             cluster: [{
@@ -155,6 +167,9 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                 sirenDenormAddressExposure: ([... new Set(denormAddressExposure)]),
                 items_truncated: items_truncated,
                 raw_items: address_response.data.items,
+            }],
+            pagination: [{
+                nextPage: nextPage
             }]
         }
     }

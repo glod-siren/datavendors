@@ -6,6 +6,7 @@ export default class AddressTransactions extends ServiceDefinition {
         address: { type: 'text', required: true },
         asset: { type: 'text', required: true },
         direction: { type: 'text', required: true },
+        page: { type: 'text', required: false },
     };
     readonly outputConfiguration: OutputConfiguration = {
         transaction: {
@@ -23,14 +24,21 @@ export default class AddressTransactions extends ServiceDefinition {
                     }
                 }
             }
+        },
+        pagination: {
+            'nextPage': 'keyword'
         }
     };
     async invoke(inputs: {
         address: string,
         asset: string,
-        direction: string
+        direction: string,
+        page: string
     }): Promise<DataIndexResults> {
-        let transaction_url = `https://iapi.chainalysis.com/addresses/${inputs.address}/${inputs.asset}/transactions?size=200&direction=${inputs.direction}`
+        let transaction_url = `https://iapi.chainalysis.com/addresses/${inputs.address}/${inputs.asset}/transactions?size=100&direction=${inputs.direction}`
+        if (inputs.page) {
+            transaction_url + transaction_url + `&page=${inputs.page}`
+        }
         const transaction_config: AxiosRequestConfig = {
             method: 'get',
             url: transaction_url,
@@ -41,12 +49,13 @@ export default class AddressTransactions extends ServiceDefinition {
         };
         const transaction_response: AxiosResponse = await axios(transaction_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
         let truncated = false
+        let nextPage = '';
         if (transaction_response.data.nextPage != null) {
             let page = transaction_response.data.nextPage
             let lastResult = { nextPage: '' };
             do {
                 try {
-                    let sub_url = transaction_url + `&page=${page}`
+                    let sub_url = `https://iapi.chainalysis.com/addresses/${inputs.address}/${inputs.asset}/transactions?size=100&direction=${inputs.direction}` + `&page=${page}`
                     const sub_config: AxiosRequestConfig = {
                         method: 'get',
                         url: sub_url,
@@ -59,9 +68,10 @@ export default class AddressTransactions extends ServiceDefinition {
                     lastResult = sub_response.data;
                     transaction_response.data.items.push.apply(transaction_response.data.items, sub_response.data.items)
                 } catch { new WebServiceError('pagination error') }
-            } while (lastResult.nextPage !== null && transaction_response.data.items < 5000)
+            } while (lastResult.nextPage !== null && transaction_response.data.items < 500)
             if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
                 truncated = true
+                nextPage = lastResult.nextPage
             }
         }
         for (let y = 0; y < transaction_response.data.items.length; y++) {
@@ -95,7 +105,10 @@ export default class AddressTransactions extends ServiceDefinition {
             } catch { }
         }
         return {
-            transaction: transaction_response.data.items
+            transaction: transaction_response.data.items,
+            pagination: [{
+                nextPage: nextPage
+            }]
         }
     }
 }

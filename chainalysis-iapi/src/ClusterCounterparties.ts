@@ -6,24 +6,32 @@ export default class ClusterCounterparties extends ServiceDefinition {
     address: { type: 'text', required: true },
     asset: { type: 'text', required: true },
     outputAsset: { type: 'text', required: false },
+    page: { type: 'text', required: false },
   };
   readonly outputConfiguration: OutputConfiguration = {
     counterparties: {
-        'raw': 'text',
-        'firstTransferTimestamp': 'date',
-        'lastTransferTimestamp': 'date',
-        'sentAmount': 'long',
-        'receivedAmount': 'long',
-        'transfers': 'long'
-    }
+      'raw': 'text',
+      'firstTransferTimestamp': 'date',
+      'lastTransferTimestamp': 'date',
+      'sentAmount': 'long',
+      'receivedAmount': 'long',
+      'transfers': 'long'
+    },
+    pagination: {
+      'nextPage': 'keyword'
+  }
   };
   async invoke(inputs: {
     address: string,
     asset: string,
-    outputAsset: string
+    outputAsset: string,
+    page: string,
   }): Promise<DataIndexResults> {
-    if (!inputs.outputAsset) {inputs.outputAsset = 'NATIVE'}
-    let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}&size=200`
+    if (!inputs.outputAsset) { inputs.outputAsset = 'NATIVE' }
+    let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}&size=100`
+    if (inputs.page) {
+      url + url + `&page=${inputs.page}`
+    }
     const config: AxiosRequestConfig = {
       method: 'get',
       url: url,
@@ -35,12 +43,13 @@ export default class ClusterCounterparties extends ServiceDefinition {
     const response: AxiosResponse = await axios(config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
     //let items = response.data.items
     let truncated = false
+    let nextPage = '';
     if (response.data.nextPage != null) {
       let page = response.data.nextPage
       let lastResult = { nextPage: '' };
       do {
         try {
-          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}&size=200&page=${page}`
+          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}&size=100&page=${page}`
           const sub_config: AxiosRequestConfig = {
             method: 'get',
             url: sub_url,
@@ -53,9 +62,10 @@ export default class ClusterCounterparties extends ServiceDefinition {
           lastResult = sub_response.data;
           response.data.items.push.apply(response.data.items, sub_response.data.items)
         } catch { new WebServiceError('pagination error') }
-      } while (lastResult.nextPage !== null && response.data.items < 10000)
+      } while (lastResult.nextPage !== null && response.data.items < 500)
       if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
-        truncated = true
+        truncated = true;
+        nextPage = lastResult.nextPage;
       }
     }
     for (let y = 0; y < response.data.items.length; y++) {
@@ -68,7 +78,10 @@ export default class ClusterCounterparties extends ServiceDefinition {
       })
     }
     return {
-        counterparties: response.data.items
+      counterparties: response.data.items,
+      pagination: [{
+        nextPage: nextPage
+      }]
     }
   }
 }
