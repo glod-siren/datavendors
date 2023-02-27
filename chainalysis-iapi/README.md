@@ -36,7 +36,7 @@ To install these services into Investigate:
 This project was first generated with Siren's [generator for web service drivers](https://www.npmjs.com/package/@sirensolutions/generator-web-service).
 
 # To Do as of 02/26/2023
-1. Allow Filters On Transactions (Cluster and Address)
+1. Fix Modal Feedback Counts
 2. Run Unlimited Pagination In Invocations (Currently Truncated at 400 (4x100))
 3. Put Cluster Addresses Into Another Index
 4. Overview Panes To Mirror Info From Reactor
@@ -44,3 +44,4 @@ This project was first generated with Siren's [generator for web service drivers
 6. Address Transaction
 7. Official Icons
 8. Documentation
+9. Allow Filters On Transactions (Cluster and Address)
