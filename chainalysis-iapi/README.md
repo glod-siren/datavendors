@@ -1,6 +1,6 @@
 # Chainalysis Investigations API Integration
-![](https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/jxod8zbn0gg5ryjva7ri)
-![](https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/qlzmdxctu1dg9ro3phcj)
+![](https://avatars.githubusercontent.com/u/12463357?s=200&v=4)
+![](https://logosarchive.com/wp-content/uploads/2022/01/Chainalysis-logo.png)
 ![](https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg)
 
 
