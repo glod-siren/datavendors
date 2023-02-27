@@ -31,7 +31,7 @@ web_services:
 To install these services into Investigate:
 1. Run `npm run package` to create a zip
 1. Run `bin/investigate-plugin install file:////path/to/chainalysis-iapi/target/chainalysis-iapi.zip`
-2. Use Siren Scripts In the Graph To Invoke [`sirenapi`](/sirenscripts)
+2. Use Siren Scripts In the Graph To Invoke [`sirenapi`](sirenscripts/sirenapi)
 
 This project was first generated with Siren's [generator for web service drivers](https://www.npmjs.com/package/@sirensolutions/generator-web-service).
 
