@@ -1,7 +1,6 @@
 # Chainalysis Investigations API Integration With Siren Investigate
 ![](https://addons.siren.io/assets/images/siren-logo.png)
 ![](https://logosarchive.com/wp-content/uploads/2022/01/Chainalysis-logo.png)
-![](https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg)
 
 
 This web service driver consists of services for the chainalysis-iapi service group.
