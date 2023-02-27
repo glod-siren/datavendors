@@ -1,5 +1,5 @@
-# Chainalysis Investigations API Integration
-![](https://avatars.githubusercontent.com/u/12463357?s=200&v=4)
+# Chainalysis Investigations API Integration With Siren Investigate
+![](https://addons.siren.io/assets/images/siren-logo.png)
 ![](https://logosarchive.com/wp-content/uploads/2022/01/Chainalysis-logo.png)
 ![](https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg)
 
@@ -32,6 +32,7 @@ web_services:
 To install these services into Investigate:
 1. Run `npm run package` to create a zip
 1. Run `bin/investigate-plugin install file:////path/to/chainalysis-iapi/target/chainalysis-iapi.zip`
+2. Use Siren Scripts In the Graph To Invoke [`sirenapi`](/sirenscripts)
 
 This project was first generated with Siren's [generator for web service drivers](https://www.npmjs.com/package/@sirensolutions/generator-web-service).
 
@@ -43,3 +44,4 @@ This project was first generated with Siren's [generator for web service drivers
 5. Dashboard with Search Driven By Scripted Panel
 6. Address Transaction
 7. Official Icons
+8. Documentation
