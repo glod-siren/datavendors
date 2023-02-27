@@ -9,13 +9,13 @@ const {
 const config = {
     expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank
-    titleText: "Chainalysis IAPI - Cluster Counterparties",
-    destination: "Cluster Counterparties",
+    titleText: "Chainalysis IAPI - Cluster Observation",
+    destination: "Cluster Observation",
     uri_1: [
         "web-service-chainalysis-iapi-cluster_combined_info-results-cluster",
     ],
     WSName: 'chainalysis-iapi',
-    WSType: 'cluster_counterparties',
+    WSType: 'cluster_observations',
     WSStoreData: true,
     WSReturnData: true,
     bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'
@@ -78,10 +78,10 @@ function ModalContentElement() {
                     { storeData: config.WSStoreData, returnData: config.WSReturnData }
                 )
                 setSearchedCount(searchedCount + 1)
-                console.log(node.label + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)
+                console.log(node.id + ' ' + invocation.statusText)
                 if (invocation.statusText == 'OK') {
-                    mydata.push(invocation.data.counterparties)
-                    setResultCount(resultCount + invocation.data.counterparties.length)
+                    mydata.push(invocation.data.observation)
+                    setResultCount(resultCount + invocation.data.observation.length)
                 }
             })).then(function () {
                 console.log('Done with Web Services')

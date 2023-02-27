@@ -9,13 +9,13 @@ const {
 const config = {
     expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank
-    titleText: "Chainalysis IAPI - Cluster Counterparties",
-    destination: "Cluster Counterparties",
+    titleText: "Chainalysis IAPI - Cluster",
+    destination: "Chainalysis Clusters",
     uri_1: [
-        "web-service-chainalysis-iapi-cluster_combined_info-results-cluster",
-    ],
+        "web-service-chainalysis-iapi-cluster_counterparties-results-counterparties",
+   ],
     WSName: 'chainalysis-iapi',
-    WSType: 'cluster_counterparties',
+    WSType: 'cluster_combined_info',
     WSStoreData: true,
     WSReturnData: true,
     bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'
@@ -27,11 +27,11 @@ function ModalContentElement() {
     const [showLoaded, setLoaded] = React.useState(false);
     const [invocated, setInvocated] = React.useState(false);
     const [resultCount, setResultCount] = React.useState(0);
+    const [searchedCount, setSearchedCount] = React.useState(0);
     const [selectedCount, setSelectedCount] = React.useState(0);
     const [selectedNodes, setSelectedNodes] = React.useState([]);
     const [foundNodes, setFoundNodes] = React.useState(false);
     const [showBad, setShowBad] = React.useState(false);
-    const [searchedCount, setSearchedCount] = React.useState(0);
     const getSelectedNodes = async () => {
         let temp = await currentVisualization.selection();
         if (temp.length == 0) {
@@ -55,6 +55,7 @@ function ModalContentElement() {
                 setInvocated(true)
                 ids.push(node.id)
                 let queryString = node.id.split("/")[2];
+                let splitQuery = queryString.split('%3A');
                 let matched = false
                 config.uri_1.map(uri => {
                     if (uri == node.id.split("/")[0]) {
@@ -67,8 +68,22 @@ function ModalContentElement() {
                     setShowBad(true)
                     throw new Error('Must Select The Right Nodes');
                 }
-                let splitQuery = queryString.split('%3A');
-                let invocation = await sirenapi.invokeWebService(
+                const invocation = await sirenapi.invokeWebService(
+                    config.WSName,
+                    config.WSType,
+                    {
+                        asset: splitQuery[0].replace(/\W|"/, ''),
+                        address: splitQuery[2].replace(/\W|"/, '')
+                    },
+                    { storeData: config.WSStoreData, returnData: config.WSReturnData }
+                )
+                
+                console.log(node.id + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)
+                if (invocation.statusText == 'OK') {
+                    mydata.push(invocation.data.cluster)
+                    setResultCount(resultCount + invocation.data.cluster.length)
+                }
+                const input_invocation = sirenapi.invokeWebService(
                     config.WSName,
                     config.WSType,
                     {
@@ -77,18 +92,17 @@ function ModalContentElement() {
                     },
                     { storeData: config.WSStoreData, returnData: config.WSReturnData }
                 )
-                setSearchedCount(searchedCount + 1)
-                console.log(node.label + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)
-                if (invocation.statusText == 'OK') {
-                    mydata.push(invocation.data.counterparties)
-                    setResultCount(resultCount + invocation.data.counterparties.length)
+                if (input_invocation.statusText == 'OK') {
+                    mydata.push(input_invocation.data.cluster)
+                    setResultCount(resultCount + input_invocation.data.cluster.length)
                 }
+                console.log(node.id + ' ' + input_invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)
             })).then(function () {
-                console.log('Done with Web Services')
-                console.log(mydata)
-                setLoaded(true)
-                setLoading(false)
-            })
+                    console.log('Done with Web Services')
+                    console.log(mydata)
+                    setLoaded(true)
+                    setLoading(false)
+                })
         }
     }
     if (selectedNodes.length >= 1 && !invocated) {
