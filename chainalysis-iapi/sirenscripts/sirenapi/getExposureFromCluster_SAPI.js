@@ -7,16 +7,15 @@ const {
     EuiImage
 } = Eui;
 const config = {
-    expandRelations: [e
+    expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank
-    titleText: "Chainalysis IAPI - Cluster",
-    destination: "Chainalysis Clusters",
+    titleText: "Chainalysis IAPI - Cluster Exposure",
+    destination: "Cluster Exposure",
     uri_1: [
-        "VIRTUAL_ENTITY",
-   ],
-    secondsearch: "web-service-chainalysis-iapi-cluster_counterparties-results-counterparties",
+        "web-service-chainalysis-iapi-cluster_combined_info-results-cluster",
+    ],
     WSName: 'chainalysis-iapi',
-    WSType: 'cluster_combined_info',
+    WSType: 'cluster_exposure',
     WSStoreData: true,
     WSReturnData: true,
     bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'
@@ -28,11 +27,11 @@ function ModalContentElement() {
     const [showLoaded, setLoaded] = React.useState(false);
     const [invocated, setInvocated] = React.useState(false);
     const [resultCount, setResultCount] = React.useState(0);
-    const [searchedCount, setSearchedCount] = React.useState(0);
     const [selectedCount, setSelectedCount] = React.useState(0);
     const [selectedNodes, setSelectedNodes] = React.useState([]);
     const [foundNodes, setFoundNodes] = React.useState(false);
     const [showBad, setShowBad] = React.useState(false);
+    const [searchedCount, setSearchedCount] = React.useState(0);
     const getSelectedNodes = async () => {
         let temp = await currentVisualization.selection();
         if (temp.length == 0) {
@@ -56,7 +55,6 @@ function ModalContentElement() {
                 setInvocated(true)
                 ids.push(node.id)
                 let queryString = node.id.split("/")[2];
-                let splitQuery = queryString.split('%3A');
                 let matched = false
                 config.uri_1.map(uri => {
                     if (uri == node.id.split("/")[0]) {
@@ -69,7 +67,8 @@ function ModalContentElement() {
                     setShowBad(true)
                     throw new Error('Must Select The Right Nodes');
                 }
-                const invocation = await sirenapi.invokeWebService(
+                let splitQuery = queryString.split('%3A');
+                let invocation = await sirenapi.invokeWebService(
                     config.WSName,
                     config.WSType,
                     {
@@ -79,12 +78,11 @@ function ModalContentElement() {
                     { storeData: config.WSStoreData, returnData: config.WSReturnData }
                 )
                 setSearchedCount(searchedCount + 1)
-                console.log(node.label + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)
+                console.log(node.id + ' ' + invocation.statusText)
                 if (invocation.statusText == 'OK') {
-                    mydata.push(invocation.data.cluster)
-                    setResultCount(resultCount + invocation.data.cluster.length)
+                    mydata.push(invocation.data.exposure)
+                    setResultCount(resultCount + invocation.data.exposure.length)
                 }
-                setSearchedCount(searchedCount + 1)
             })).then(function () {
                 console.log('Done with Web Services')
                 console.log(mydata)
