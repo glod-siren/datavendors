@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "christian-kohler.npm-intellisense",
+        "ms-edgedevtools.vscode-edge-devtools",
+        "github.copilot",
+        "deerawan.vscode-elasticsearch-snippets",
+        "bar.elasticsearch",
+        "ms-vscode-remote.remote-containers",
+        "rangav.vscode-thunder-client"
+    ]
+}
