@@ -26,12 +26,15 @@ const config = {
     bannerUrl: 'https://duckduckgo.com/_next/static/media/logo-horizontal-dark.53712807.svg',
 }
 
+let query_var = "Siren.io Web Service";
+let page_var = 1; 
+
 let invocation = await sirenapi.invokeWebService(
   config.WSName,
   config.WSType,
   {
-    query: variable //replace variable with whatever is getting the query such as a modal
-    numPages: 1 // put in the number of pages you want to return, pages are usually 20-30 results each
+    query: query_var,
+    numPages: page_var
   },
   { storeData: config.WSStoreData, returnData: config.WSReturnData }
 );
