@@ -13,7 +13,7 @@ This project is a public accessible sandbox for experimental data source connect
 
 ## Usage
 
-After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit using the Siren API:
+After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit's `duckduckgo-scraper` using the Siren API:
 
 ```javascript
 const config = {
