@@ -1,0 +1,1512 @@
+[
+  {
+    "_type": "meta",
+    "_investigate_version": "13.1.0"
+  },
+  {
+    "_id": "chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907",
+    "_type": "eid",
+    "_source": {
+      "title": "Crypto Address",
+      "version": 1,
+      "siren": {
+        "ui": {
+          "icon": "fas fa-coins",
+          "color": "#c2cf32"
+        }
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+    "_type": "eid",
+    "_source": {
+      "title": "Chainalysis Category",
+      "version": 1,
+      "siren": {
+        "ui": {
+          "icon": "fas fa-folder-tree",
+          "color": "#fa6c05"
+        }
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:eid:6fc06f80-b388-11ed-8bec-4d4ea0e3c446",
+    "_type": "eid",
+    "_source": {
+      "title": "IP Address",
+      "version": 1,
+      "siren": {
+        "ui": {
+          "icon": "fas fa-network-wired",
+          "color": "#6D6CC7"
+        }
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Cluster",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-cluster_combined_info-results-cluster",
+        "fields": "[{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":0,\"excluded\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":1,\"excluded\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":2,\"excluded\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":3,\"excluded\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":4,\"excluded\":false},{\"name\":\"asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":5,\"excluded\":false},{\"name\":\"asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":6,\"excluded\":false},{\"name\":\"category\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":7,\"excluded\":false},{\"name\":\"category.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":8,\"excluded\":false},{\"name\":\"cluster_balance\",\"esType\":\"object\",\"type\":\"unknown\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"cluster_balance.address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":9,\"excluded\":false},{\"name\":\"cluster_balance.address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":10,\"excluded\":false},{\"name\":\"cluster_balance.addressCount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":11,\"excluded\":false},{\"name\":\"cluster_balance.asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":12,\"excluded\":false},{\"name\":\"cluster_balance.asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":13,\"excluded\":false},{\"name\":\"cluster_balance.balance\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":14,\"excluded\":false},{\"name\":\"cluster_balance.depositCount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":15,\"excluded\":false},{\"name\":\"cluster_balance.outputAsset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":16,\"excluded\":false},{\"name\":\"cluster_balance.outputAsset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":17,\"excluded\":false},{\"name\":\"cluster_balance.rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":18,\"excluded\":false},{\"name\":\"cluster_balance.rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":19,\"excluded\":false},{\"name\":\"cluster_balance.totalFeesAmount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":20,\"excluded\":false},{\"name\":\"cluster_balance.totalReceivedAmount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":21,\"excluded\":false},{\"name\":\"cluster_balance.totalSentAmount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":22,\"excluded\":false},{\"name\":\"cluster_balance.transferCount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":23,\"excluded\":false},{\"name\":\"cluster_balance.withdrawalCount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":24,\"excluded\":false},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":25,\"excluded\":false},{\"name\":\"items_truncated\",\"esType\":\"boolean\",\"type\":\"boolean\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":26,\"excluded\":false},{\"name\":\"name\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":27,\"excluded\":false},{\"name\":\"name.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":28,\"excluded\":false},{\"name\":\"rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":29,\"excluded\":false},{\"name\":\"rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":30,\"excluded\":false},{\"name\":\"sirenDenormAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":31,\"excluded\":false},{\"name\":\"sirenDenormAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":32,\"excluded\":false}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-draw-circle",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_combined_info-results-cluster ",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "_items",
+            "_items.address",
+            "_items_truncated",
+            "asset",
+            "category",
+            "cluster_balance",
+            "cluster_balance.address",
+            "cluster_balance.addressCount",
+            "cluster_balance.asset",
+            "cluster_balance.balance",
+            "cluster_balance.depositCount",
+            "cluster_balance.outputAsset",
+            "cluster_balance.rootAddress",
+            "cluster_balance.totalFeesAmount",
+            "cluster_balance.totalReceivedAmount",
+            "cluster_balance.totalSentAmount",
+            "cluster_balance.transferCount",
+            "cluster_balance.withdrawalCount",
+            "exposure",
+            "exposure.category",
+            "exposure.direction",
+            "exposure.name",
+            "exposure.percentage",
+            "exposure.rootAddress",
+            "exposure.type",
+            "exposure.value",
+            "id",
+            "name",
+            "rootAddress",
+            "sirenDenormAddressExposure",
+            "sirenDenormAddresses"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Cluster Counterparties",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "asset",
+        "category",
+        "name",
+        "capabilities",
+        "sirenDenormPartyInput",
+        "sirenDenormPartyOutput",
+        "receivedAmount",
+        "sentAmount",
+        "transfers",
+        "truncated"
+      ],
+      "sort": [
+        "lastTransferTimestamp",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-cluster_counterparties-results-counterparties",
+        "timeFieldName": "lastTransferTimestamp",
+        "fields": "[{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"capabilities\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"capabilities.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"category\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"category.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"firstTransferTimestamp\",\"esType\":\"date\",\"type\":\"date\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"inputAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"inputAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"lastTransferTimestamp\",\"esType\":\"date\",\"type\":\"date\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"name\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"name.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"outputAsset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"outputAsset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"raw\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"receivedAmount\",\"esType\":\"long\",\"type\":\"number\",\"count\":1,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sentAmount\",\"esType\":\"long\",\"type\":\"number\",\"count\":1,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sirenDenormPartyInput\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"sirenDenormPartyInput.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sirenDenormPartyOutput\",\"esType\":\"text\",\"type\":\"string\",\"count\":1,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"sirenDenormPartyOutput.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"transfers\",\"esType\":\"long\",\"type\":\"number\",\"count\":1,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"truncated\",\"esType\":\"boolean\",\"type\":\"boolean\",\"count\":1,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-hands-helping",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_counterparties-results-counterparties",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "firstTransferTimestamp",
+            "id",
+            "inputAddress",
+            "lastTransferTimestamp",
+            "name",
+            "outputAsset",
+            "raw",
+            "receivedAmount",
+            "rootAddress",
+            "sentAmount",
+            "sirenDenormPartyInput",
+            "sirenDenormPartyOutput",
+            "transfers"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        },
+        "highlight": {
+          "fields": "{\"*\":{\"type\":\"unified\"}}"
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Exposure",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+        "fields": "[{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"category\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"category.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"direction\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"direction.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"exposure\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"exposure.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"inputAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"inputAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"name\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"name.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"outputAsset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"outputAsset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"percentage\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sirenDenormExposureAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"sirenDenormExposureAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sirenDenormRootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"sirenDenormRootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"type\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"type.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"value\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-expand-arrows-alt",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "direction",
+            "exposure",
+            "id",
+            "inputAddress",
+            "name",
+            "outputAsset",
+            "percentage",
+            "rootAddress",
+            "sirenDenormExposureAddress",
+            "sirenDenormRootAddress",
+            "type",
+            "value"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:484e92a0-bb9a-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Receiving",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-arrow-alt-to-left",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "direction",
+            "exposure",
+            "id",
+            "inputAddress",
+            "name",
+            "outputAsset",
+            "percentage",
+            "rootAddress",
+            "sirenDenormExposureAddress",
+            "sirenDenormRootAddress",
+            "type",
+            "value"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        },
+        "parentId": "chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a"
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"meta\":{\"negate\":true,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"direction\",\"value\":\"SENDING\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"direction\":{\"query\":\"SENDING\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":true,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"exposure\",\"value\":\"indirectExposure\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"exposure\":{\"query\":\"indirectExposure\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:4ba02410-bb99-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Sending",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-arrow-alt-from-left",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "direction",
+            "exposure",
+            "id",
+            "inputAddress",
+            "name",
+            "outputAsset",
+            "percentage",
+            "rootAddress",
+            "sirenDenormExposureAddress",
+            "sirenDenormRootAddress",
+            "type",
+            "value"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        },
+        "parentId": "chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a"
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"meta\":{\"negate\":false,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"direction\",\"value\":\"SENDING\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"direction\":{\"query\":\"SENDING\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":true,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"exposure\",\"value\":\"indirectExposure\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"exposure\":{\"query\":\"indirectExposure\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:ce07c700-bb99-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Receiving",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "far fa-arrow-alt-to-left",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "direction",
+            "exposure",
+            "id",
+            "inputAddress",
+            "name",
+            "outputAsset",
+            "percentage",
+            "rootAddress",
+            "sirenDenormExposureAddress",
+            "sirenDenormRootAddress",
+            "type",
+            "value"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        },
+        "parentId": "chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a"
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"meta\":{\"negate\":true,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"direction\",\"value\":\"SENDING\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"direction\":{\"query\":\"SENDING\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":false,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"exposure\",\"value\":\"indirectExposure\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"exposure\":{\"query\":\"indirectExposure\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:e767aaa0-bb97-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Sending",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "far fa-arrow-alt-from-left",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_exposure-results-exposure",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "asset",
+            "category",
+            "direction",
+            "exposure",
+            "id",
+            "inputAddress",
+            "name",
+            "outputAsset",
+            "percentage",
+            "rootAddress",
+            "sirenDenormExposureAddress",
+            "sirenDenormRootAddress",
+            "type",
+            "value"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        },
+        "parentId": "chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a"
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"meta\":{\"negate\":false,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"exposure\",\"value\":\"indirectExposure\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"exposure\":{\"query\":\"indirectExposure\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":false,\"sid\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"type\":\"phrase\",\"key\":\"direction\",\"value\":\"SENDING\",\"disabled\":false,\"alias\":null},\"query\":{\"match_phrase\":{\"direction\":{\"query\":\"SENDING\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Transactions",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "details.blockTimestamp",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-address_transactions-results-transaction,web-service-chainalysis-iapi-cluster_transactions-results-transaction",
+        "timeFieldName": "details.blockTimestamp",
+        "fields": "[{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":0,\"excluded\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":1,\"excluded\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":2,\"excluded\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":3,\"excluded\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":4,\"excluded\":false},{\"name\":\"details\",\"esType\":\"object\",\"type\":\"unknown\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"details.asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":5,\"excluded\":false},{\"name\":\"details.asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":6,\"excluded\":false},{\"name\":\"details.blockHash\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":7,\"excluded\":false},{\"name\":\"details.blockHash.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":8,\"excluded\":false},{\"name\":\"details.blockHeight\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":9,\"excluded\":false},{\"name\":\"details.blockTimestamp\",\"esType\":\"date\",\"type\":\"date\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":10,\"excluded\":false},{\"name\":\"details.exchangeRate\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":11,\"excluded\":false},{\"name\":\"details.fee\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":12,\"excluded\":false},{\"name\":\"details.traces\",\"esType\":\"object\",\"type\":\"unknown\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"details.traces.inputs\",\"esType\":\"object\",\"type\":\"unknown\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"details.traces.inputs.address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":13,\"excluded\":false},{\"name\":\"details.traces.inputs.address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":14,\"excluded\":false},{\"name\":\"details.traces.inputs.amount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":15,\"excluded\":false},{\"name\":\"details.traces.inputs.category\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":16,\"excluded\":false},{\"name\":\"details.traces.inputs.category.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":17,\"excluded\":false},{\"name\":\"details.traces.inputs.name\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":18,\"excluded\":false},{\"name\":\"details.traces.inputs.name.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":19,\"excluded\":false},{\"name\":\"details.traces.inputs.rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":20,\"excluded\":false},{\"name\":\"details.traces.inputs.rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":21,\"excluded\":false},{\"name\":\"details.traces.outputs\",\"esType\":\"object\",\"type\":\"unknown\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"details.traces.outputs.address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":22,\"excluded\":false},{\"name\":\"details.traces.outputs.address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":23,\"excluded\":false},{\"name\":\"details.traces.outputs.amount\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":24,\"excluded\":false},{\"name\":\"details.traces.outputs.category\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":25,\"excluded\":false},{\"name\":\"details.traces.outputs.category.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":26,\"excluded\":false},{\"name\":\"details.traces.outputs.name\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":27,\"excluded\":false},{\"name\":\"details.traces.outputs.name.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":28,\"excluded\":false},{\"name\":\"details.traces.outputs.rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":29,\"excluded\":false},{\"name\":\"details.traces.outputs.rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":30,\"excluded\":false},{\"name\":\"details.transactionHash\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":31,\"excluded\":false},{\"name\":\"details.transactionHash.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":32,\"excluded\":false},{\"name\":\"direction\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":33,\"excluded\":false},{\"name\":\"direction.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":34,\"excluded\":false},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":35,\"excluded\":false},{\"name\":\"sirenDenormInputAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":36,\"excluded\":false},{\"name\":\"sirenDenormInputAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":37,\"excluded\":false},{\"name\":\"sirenDenormOutputAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":38,\"excluded\":false},{\"name\":\"sirenDenormOutputAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":39,\"excluded\":false},{\"name\":\"transactionHash\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":40,\"excluded\":false},{\"name\":\"transactionHash.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":41,\"excluded\":false},{\"name\":\"truncated\",\"esType\":\"boolean\",\"type\":\"boolean\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":42,\"excluded\":false}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-hand-holding-usd",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-address_transactions-results-transaction",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "denormInputAddress",
+            "denormOutputAddress",
+            "details",
+            "details.asset",
+            "details.blockHash",
+            "details.blockHeight",
+            "details.blockTimestamp",
+            "details.exchangeRate",
+            "details.fee",
+            "details.traces",
+            "details.traces.inputs",
+            "details.traces.inputs.address",
+            "details.traces.inputs.amount",
+            "details.traces.inputs.category",
+            "details.traces.inputs.name",
+            "details.traces.inputs.rootAddress",
+            "details.traces.outputs",
+            "details.traces.outputs.address",
+            "details.traces.outputs.amount",
+            "details.traces.outputs.category",
+            "details.traces.outputs.name",
+            "details.traces.outputs.rootAddress",
+            "details.transactionHash",
+            "direction",
+            "id",
+            "transactionHash"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:91b086b0-b389-11ed-8bec-4d4ea0e3c446",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis IP Observations",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "timestamp",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-ip_observations-results-observation",
+        "timeFieldName": "timestamp",
+        "fields": "[{\"name\":\"ISP\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":14,\"excluded\":false},{\"name\":\"ISP.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":15,\"excluded\":false},{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":0,\"excluded\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":1,\"excluded\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":2,\"excluded\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":3,\"excluded\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false,\"id\":4,\"excluded\":false},{\"name\":\"address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":5,\"excluded\":false},{\"name\":\"address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":6,\"excluded\":false},{\"name\":\"city\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":7,\"excluded\":false},{\"name\":\"city.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":8,\"excluded\":false},{\"name\":\"country\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":9,\"excluded\":false},{\"name\":\"country.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":10,\"excluded\":false},{\"name\":\"geo_location\",\"esType\":\"geo_point\",\"type\":\"geo_point\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":11,\"excluded\":false},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":12,\"excluded\":false},{\"name\":\"ipAddress\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":13,\"excluded\":false},{\"name\":\"lat\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":16,\"excluded\":false},{\"name\":\"long\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":17,\"excluded\":false},{\"name\":\"port\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":18,\"excluded\":false},{\"name\":\"sirenDenormAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":19,\"excluded\":false},{\"name\":\"sirenDenormAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":20,\"excluded\":false},{\"name\":\"software\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":21,\"excluded\":false},{\"name\":\"software.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":22,\"excluded\":false},{\"name\":\"timestamp\",\"esType\":\"date\",\"type\":\"date\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":23,\"excluded\":false},{\"name\":\"tor\",\"esType\":\"boolean\",\"type\":\"boolean\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":24,\"excluded\":false},{\"name\":\"walletRootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false,\"id\":25,\"excluded\":false},{\"name\":\"walletRootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true,\"id\":26,\"excluded\":false}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "far fa-eye",
+          "color": "#6D6CC7",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-ip_observations-results-observation",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "ISP",
+            "address",
+            "city",
+            "country",
+            "geo_location",
+            "id",
+            "ipAddress",
+            "lat",
+            "long",
+            "port",
+            "sirenDenormAddress",
+            "software",
+            "timestamp",
+            "tor",
+            "walletRootAddress"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:4befbc00-b388-11ed-8bec-4d4ea0e3c446",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Cluster Observations",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-cluster_observations-results-observation",
+        "timeFieldName": "timestamp",
+        "fields": "[{\"name\":\"ISP\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"ISP.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"city\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"city.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"country\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"country.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"geo_location\",\"esType\":\"geo_point\",\"type\":\"geo_point\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"ipAddress\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"lat\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"long\",\"esType\":\"long\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"port\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"sirenDenormAdress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"sirenDenormAdress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"software\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"software.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"timestamp\",\"esType\":\"date\",\"type\":\"date\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"tor\",\"esType\":\"boolean\",\"type\":\"boolean\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"walletRootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"walletRootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-eye",
+          "color": "#fa6c05",
+          "shortDescription": "",
+          "instanceLabelType": "FIELD",
+          "instanceLabelValue": "id"
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_observations-results-observation",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "ISP",
+            "address",
+            "city",
+            "country",
+            "geo_location",
+            "id",
+            "ipAddress",
+            "lat",
+            "long",
+            "port",
+            "rootAddress",
+            "sirenDenormAdress",
+            "software",
+            "timestamp",
+            "tor",
+            "walletRootAddress"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:search:7c830ca0-bba3-11ed-8bf3-73602963064a",
+    "_type": "search",
+    "_source": {
+      "title": "Chainalysis Resolved Addresses",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "_score",
+        "desc"
+      ],
+      "version": 6,
+      "indexPattern": {
+        "pattern": "web-service-chainalysis-iapi-cluster_combined_info-results-addresses,web-service-chainalysis-iapi-cluster_address-results-addresses",
+        "fields": "[{\"name\":\"_id\",\"esType\":\"_id\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_index\",\"esType\":\"_index\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"_score\",\"esType\":\"text\",\"type\":\"number\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_source\",\"esType\":\"_source\",\"type\":\"_source\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":false,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"_type\",\"esType\":\"_type\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":false},{\"name\":\"address\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"address.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"asset\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"asset.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"id\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":true,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true},{\"name\":\"rootAddress\",\"esType\":\"text\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":false,\"scripted\":false,\"searchable\":true,\"aggregatable\":false,\"readFromDocValues\":false},{\"name\":\"rootAddress.keyword\",\"esType\":\"keyword\",\"type\":\"string\",\"count\":0,\"primaryKey\":false,\"singleValue\":true,\"scripted\":false,\"searchable\":true,\"aggregatable\":true,\"readFromDocValues\":true}]",
+        "excludeIndices": false
+      },
+      "siren": {
+        "indexingScope": "N",
+        "ui": {
+          "icon": "fas fa-hashtag",
+          "color": "#fa6c05",
+          "shortDescription": ""
+        },
+        "globalSearch": {
+          "enabled": true,
+          "boost": 10
+        },
+        "templateScripts": {
+          "scriptIds": []
+        },
+        "revision": {
+          "index": "web-service-chainalysis-iapi-cluster_combined_info-results-addresses",
+          "isEditable": false,
+          "primaryKey": "_id",
+          "editableFieldsMode": "whitelist",
+          "filteringMode": "filter-by-index-join",
+          "editableFieldsExceptions": [
+            "address",
+            "asset",
+            "id",
+            "rootAddress"
+          ],
+          "indexingScope": "N",
+          "copyToFields": {}
+        }
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:4b2ba570-bb9b-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Direct Exposure - Receiving",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:484e92a0-bb9a-11ed-8bf3-73602963064a",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "",
+      "inverseOf": "relation: 4b27d4e0-bb9b-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:21ac5320-bb9b-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Cluster Counterparties",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "",
+      "inverseOf": "relation: 217bf450-bb9b-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:441ab780-bb9b-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Direct Exposure - Sending",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:4ba02410-bb99-11ed-8bf3-73602963064a",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "",
+      "inverseOf": "relation: 441957f0-bb9b-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:52b82c00-bb9b-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Indirect Exposure - Receiving",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:ce07c700-bb99-11ed-8bf3-73602963064a",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "",
+      "inverseOf": "relation: 52b6f380-bb9b-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:5a0c3d70-bb9b-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Indirect Exposure - Sending",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:e767aaa0-bb97-11ed-8bf3-73602963064a",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "",
+      "inverseOf": "relation: 5a0c6480-bb9b-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:9a06fed0-bb9e-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "category.keyword",
+      "directLabel": "category",
+      "inverseLabel": "category",
+      "inverseOf": "relation: 9a059f40-bb9e-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:ab48b850-bb9e-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Transactions",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "details.traces.inputs.category.keyword",
+      "directLabel": "input category",
+      "inverseLabel": "input category",
+      "inverseOf": "relation: ab481c10-bb9e-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:ba79e150-bb9e-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Category ->  -> Chainalysis Transactions",
+      "version": 1,
+      "domainId": "chainalysis1:eid:0d49d1a0-bb9b-11ed-8bf3-73602963064a",
+      "rangeId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "details.traces.outputs.category.keyword",
+      "directLabel": "output category",
+      "inverseLabel": "",
+      "inverseOf": "relation: ba7833a0-bb9e-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:d51f19a0-b61f-11ed-84fb-476bd54e9b29",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Cluster -> output of counterparty query -> Chainalysis Cluster Counterparties",
+      "version": 1,
+      "domainId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "domainField": "id",
+      "rangeId": "chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormPartyOutput.keyword",
+      "directLabel": "output of counterparty query",
+      "inverseLabel": "counterparty query has output",
+      "inverseOf": "relation: d51c3370-b61f-11ed-b3df-afc49cf87dea",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:52fa2500-b61f-11ed-84fb-476bd54e9b29",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Cluster -> input of counterparty query -> Chainalysis Cluster Counterparties",
+      "version": 1,
+      "domainId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "domainField": "id",
+      "rangeId": "chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormPartyInput.keyword",
+      "directLabel": "input of counterparty query",
+      "inverseLabel": "counterparty query has input",
+      "inverseOf": "relation: 52f87750-b61f-11ed-b3df-afc49cf87dea",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:e2b573d0-b61e-11ed-84fb-476bd54e9b29",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Cluster -> address observed by ip address -> Chainalysis IP Observations",
+      "version": 1,
+      "domainId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "domainField": "rootAddress.keyword",
+      "rangeId": "chainalysis1:search:91b086b0-b389-11ed-8bec-4d4ea0e3c446",
+      "rangeField": "walletRootAddress.keyword",
+      "directLabel": "address observed by ip address",
+      "inverseLabel": "ip address observed address",
+      "inverseOf": "relation: e2b329e0-b61e-11ed-b3df-afc49cf87dea",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:aa0f94f0-b620-11ed-84fb-476bd54e9b29",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Cluster Observations ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:4befbc00-b388-11ed-8bec-4d4ea0e3c446",
+      "domainField": "sirenDenormAdress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "id",
+      "directLabel": "observation made by cluster",
+      "inverseLabel": "cluster has observation",
+      "inverseOf": "relation: aa0de740-b620-11ed-b3df-afc49cf87dea",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:98de8130-bb9a-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Receiving ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:484e92a0-bb9a-11ed-8bf3-73602963064a",
+      "domainField": "sirenDenormExposureAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormAddress.keyword",
+      "directLabel": "cluster mentioned in direct exposure",
+      "inverseLabel": "mentioned in direct exposure",
+      "inverseOf": "relation: 98dbe920-bb9a-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:645f7a90-bb9a-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Receiving ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:484e92a0-bb9a-11ed-8bf3-73602963064a",
+      "domainField": "inputAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "cluster directly exposed by receiving",
+      "inverseLabel": "has direct exposure by receiving",
+      "inverseOf": "relation: 645eb740-bb9a-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:abc813c0-bb99-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Sending ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:4ba02410-bb99-11ed-8bf3-73602963064a",
+      "domainField": "sirenDenormExposureAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormAddress.keyword",
+      "directLabel": "cluster mentioned in direct exposure",
+      "inverseLabel": "mentioned in direct exposure",
+      "inverseOf": "relation: abc75070-bb99-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:7ce20110-bb99-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Direct Exposure - Sending ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:4ba02410-bb99-11ed-8bf3-73602963064a",
+      "domainField": "inputAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "cluster directly exposed by sending",
+      "inverseLabel": "has direct exposure by sending",
+      "inverseOf": "relation: 7ce13dc0-bb99-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:13be26e0-bb9a-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Receiving ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:ce07c700-bb99-11ed-8bf3-73602963064a",
+      "domainField": "sirenDenormExposureAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormAddress.keyword",
+      "directLabel": "cluster mentioned in indirect exposure",
+      "inverseLabel": "mentioned in indirect exposure",
+      "inverseOf": "relation: 13bb40b0-bb9a-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:ed0ac5d0-bb99-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Receiving ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:ce07c700-bb99-11ed-8bf3-73602963064a",
+      "domainField": "inputAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "cluster indirectly exposed by receiving",
+      "inverseLabel": "has indirect exposure by receiving",
+      "inverseOf": "relation: ecdb5160-bb99-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:cbc9da60-bb98-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Sending ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:e767aaa0-bb97-11ed-8bf3-73602963064a",
+      "domainField": "sirenDenormExposureAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "sirenDenormAddress.keyword",
+      "directLabel": "cluster mentioned in indirect exposure",
+      "inverseLabel": "mentioned in indirect exposure",
+      "inverseOf": "relation: cbc8a1e0-bb98-11ed-a10f-b73ef33a9bc6",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:19ef7520-bb98-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Indirect Exposure - Sending -> cluster indirectly exposed by sending -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:e767aaa0-bb97-11ed-8bf3-73602963064a",
+      "domainField": "inputAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "cluster indirectly exposed by sending",
+      "inverseLabel": "has indirect exposure by sending",
+      "inverseOf": "relation: 19edee80-bb98-11ed-a10f-b73ef33a9bc6",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:a2d4ecc0-bba3-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Resolved Addresses ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:7c830ca0-bba3-11ed-8bf3-73602963064a",
+      "domainField": "rootAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "address is part of cluster",
+      "inverseLabel": "cluster has address",
+      "inverseOf": "relation: a2d1df80-bba3-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:bfd4b040-bb9d-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Address Transaction ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "domainField": "details.traces.outputs.rootAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "transaction has cluster output",
+      "inverseLabel": "cluster was output in transaction",
+      "inverseOf": "relation: bfd106c0-bb9d-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:9b7be100-bb9d-11ed-8bf3-73602963064a",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Address Transaction ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "domainField": "details.traces.inputs.rootAddress.keyword",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "rootAddress.keyword",
+      "directLabel": "transaction has cluster input",
+      "inverseLabel": "cluster was input in transaction",
+      "inverseOf": "relation: 9a2e5260-bb9d-11ed-b2d7-9fdb95ed4417",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:f542a370-b389-11ed-8bec-4d4ea0e3c446",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Address Transaction -> address was output in transaction -> Crypto Address",
+      "version": 1,
+      "domainId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "domainField": "sirenDenormOutputAddress.keyword",
+      "rangeId": "chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907",
+      "rangeField": "",
+      "directLabel": "address was output in transaction",
+      "inverseLabel": "transaction has address output",
+      "inverseOf": "relation: f5422e40-b389-11ed-a146-318f6c329604",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:e9b6dbc0-b389-11ed-8bec-4d4ea0e3c446",
+    "_type": "relation",
+    "_source": {
+      "title": "Chainalysis Transactions -> address was input in transaction -> Crypto Address",
+      "version": 1,
+      "domainId": "chainalysis1:search:7b5113e0-adcf-11ed-bcbb-6bce064db907",
+      "domainField": "sirenDenormInputAddress.keyword",
+      "rangeId": "chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907",
+      "directLabel": "address was input in transaction",
+      "inverseLabel": "transaction has address input",
+      "inverseOf": "relation: e9867cf0-b389-11ed-a146-318f6c329604",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:3dcf18d0-b61e-11ed-84fb-476bd54e9b29",
+    "_type": "relation",
+    "_source": {
+      "title": "Crypto Address ->  -> Chainalysis Cluster",
+      "version": 1,
+      "domainId": "chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907",
+      "rangeId": "chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907",
+      "rangeField": "id",
+      "directLabel": "root address",
+      "inverseLabel": "",
+      "inverseOf": "relation: 3d9f7d50-b61e-11ed-b3df-afc49cf87dea",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:4d4f94d0-adcf-11ed-bcbb-6bce064db907",
+    "_type": "relation",
+    "_source": {
+      "title": "Crypto Address -> address in cluster -> Chainalysis Resolved Addresses",
+      "version": 1,
+      "domainId": "chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907",
+      "domainField": "",
+      "rangeId": "chainalysis1:search:7c830ca0-bba3-11ed-8bf3-73602963064a",
+      "rangeField": "id",
+      "directLabel": "address in cluster",
+      "inverseLabel": "cluster has address",
+      "inverseOf": "relation: 4d4f94d0-adcf-11ed-94d6-0382844a832c",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:818f4dd0-b388-11ed-8bec-4d4ea0e3c446",
+    "_type": "relation",
+    "_source": {
+      "title": "IP Address ->  -> Chainalysis Cluster Observations",
+      "version": 1,
+      "domainId": "chainalysis1:eid:6fc06f80-b388-11ed-8bec-4d4ea0e3c446",
+      "rangeId": "chainalysis1:search:4befbc00-b388-11ed-8bec-4d4ea0e3c446",
+      "rangeField": "ipAddress",
+      "directLabel": "matches ip",
+      "inverseLabel": "",
+      "inverseOf": "relation: 818eb190-b388-11ed-a146-318f6c329604",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": true,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:relation:c8100d20-b389-11ed-8bec-4d4ea0e3c446",
+    "_type": "relation",
+    "_source": {
+      "title": "IP Address -> ip has crypto observation -> Chainalysis IP Observations",
+      "version": 1,
+      "domainId": "chainalysis1:eid:6fc06f80-b388-11ed-8bec-4d4ea0e3c446",
+      "domainField": "",
+      "rangeId": "chainalysis1:search:91b086b0-b389-11ed-8bec-4d4ea0e3c446",
+      "rangeField": "ipAddress",
+      "directLabel": "ip has crypto observation",
+      "inverseLabel": "crypto observation by ip",
+      "inverseOf": "relation: c7e10de0-b389-11ed-a146-318f6c329604",
+      "timeout": -1,
+      "joinType": "",
+      "undirected": false,
+      "countEnabled": true
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:visualization:1ef79be0-add0-11ed-bcbb-6bce064db907",
+    "_type": "visualization",
+    "_source": {
+      "title": "Chainalysis Graph Browser",
+      "visState": "{\"title\":\"Chainalysis Graph Browser\",\"type\":\"graph_browser_vis\",\"params\":{\"contextualConfig\":{\"sections\":[{\"id\":\"edit-nodes-section\",\"items\":[{\"id\":\"view-full-record\",\"label\":\"View Full Record\",\"icon\":\"fas fa-external-link-alt\",\"type\":\"action\",\"disabled\":\"!isRecordViewEnabled\",\"action\":\"viewRecord\",\"shortcut\":[\"ALT\",\"CLICK\"]},{\"id\":\"edit-link\",\"label\":\"Add/Edit Link\",\"icon\":\"far fa-edit\",\"type\":\"action\",\"disabled\":\"!isEditLinkEnabled\",\"action\":\"addOrEditLinks\"}]},{\"id\":\"default-section\",\"items\":[{\"id\":\"expand-by-relation\",\"label\":\"Expand by relation\",\"icon\":\"fas far fa-chart-network\",\"type\":\"action\",\"action\":\"expandByRelation\"},{\"id\":\"select\",\"label\":\"Select\",\"icon\":\"fal fa-hand-pointer\",\"type\":\"menu\",\"menu\":[{\"id\":\"select-all\",\"label\":\"Select - All\",\"icon\":\"fas fa-expand\",\"type\":\"action\",\"action\":\"selectAllNodes\"},{\"id\":\"select-by-entity-type\",\"label\":\"Select - By Entity Type\",\"icon\":\"fas fa-landmark\",\"type\":\"action\",\"action\":\"selectByEntityType\"},{\"id\":\"select-extend\",\"label\":\"Select - Extend\",\"icon\":\"fas fa-project-diagram\",\"type\":\"action\",\"action\":\"extendNodesSelection\"},{\"id\":\"select-invert\",\"label\":\"Select - Invert\",\"icon\":\"fas fa-adjust\",\"type\":\"action\",\"action\":\"invertNodesSelection\"},{\"id\":\"select-by-edge-count\",\"label\":\"Select - By Edge Count\",\"icon\":\"fas fa-code-merge\",\"type\":\"action\",\"action\":\"selectByEdgeCount\"}]},{\"id\":\"sort\",\"label\":\"Sort\",\"icon\":\"fas fa-sort-amount-down\",\"type\":\"menu\",\"menu\":[{\"id\":\"sort-by-label\",\"label\":\"By label\",\"icon\":\"fas fa-sort-alpha-up\",\"type\":\"action\",\"action\":{\"api\":\"sort\",\"args\":[{\"type\":\"label\",\"order\":\"ASC\"}]}},{\"id\":\"sort-by-count\",\"label\":\"By count\",\"icon\":\"fas fa-sort-numeric-up\",\"type\":\"action\",\"action\":{\"api\":\"sort\",\"args\":[{\"type\":\"count\",\"order\":\"ASC\"}]}}]},{\"id\":\"show-nodes-count-by-type\",\"label\":\"Show nodes count by type\",\"icon\":\"fas fa-abacus\",\"type\":\"action\",\"action\":\"showNodeCountByType\"}]},{\"id\":\"node-computation-section\",\"items\":[{\"id\":\"shortest-path\",\"label\":\"Shortest Path\",\"icon\":\"fas fa-route\",\"type\":\"action\",\"action\":\"findShortestPath\"},{\"id\":\"common-communicators\",\"label\":\"Common Communicators\",\"icon\":\"far fa-flux-capacitor\",\"type\":\"action\",\"action\":\"findCommonCommunicators\"}]},{\"id\":\"chainalysis-section\",\"items\":[{\"id\":\"chainalysis-menu\",\"label\":\"Chainalysis\",\"icon\":\"fas fa-search-plus\",\"type\":\"menu\",\"menu\":[{\"id\":\"sirenapiscript:9cf31a30-b567-11ed-a36a-ef9ab8353e68\",\"label\":\"Address to Cluster Info\",\"type\":\"action\",\"action\":\"sirenapiscript:9cf31a30-b567-11ed-a36a-ef9ab8353e68\"},{\"id\":\"sirenapiscript:b26d43e0-b580-11ed-a36a-ef9ab8353e68\",\"label\":\"Cluster To Counterparties\",\"type\":\"action\",\"action\":\"sirenapiscript:b26d43e0-b580-11ed-a36a-ef9ab8353e68\"},{\"id\":\"sirenapiscript:cbf663b0-bb0b-11ed-aac0-ed7e89e7dcc1\",\"label\":\"Cluster To Exposure\",\"type\":\"action\",\"action\":\"sirenapiscript:cbf663b0-bb0b-11ed-aac0-ed7e89e7dcc1\"},{\"id\":\"sirenapiscript:899578f0-b640-11ed-93d4-b198d6ac2ced\",\"label\":\"Cluster To Observation\",\"type\":\"action\",\"action\":\"sirenapiscript:899578f0-b640-11ed-93d4-b198d6ac2ced\"},{\"id\":\"sirenapiscript:715a85f0-b645-11ed-93d4-b198d6ac2ced\",\"label\":\"Cluster To All (Unfiltered) Transactions\",\"type\":\"action\",\"action\":\"sirenapiscript:715a85f0-b645-11ed-93d4-b198d6ac2ced\"},{\"id\":\"sirenapiscript:9b120ad0-b63b-11ed-93d4-b198d6ac2ced\",\"label\":\"Counterparty To Cluster Info\",\"type\":\"action\",\"action\":\"sirenapiscript:9b120ad0-b63b-11ed-93d4-b198d6ac2ced\"},{\"id\":\"sirenapiscript:709464e0-b647-11ed-93d4-b198d6ac2ced\",\"label\":\"IP Address To Observation\",\"type\":\"action\",\"action\":\"sirenapiscript:709464e0-b647-11ed-93d4-b198d6ac2ced\"}]}]}]},\"lensScripts\":[{\"id\":\"script:15076690-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15076693-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da5-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da4-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da1-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15076692-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da3-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15076691-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da2-416d-11ec-bb6d-7759b401663f\"},{\"id\":\"script:15078da0-416d-11ec-bb6d-7759b401663f\"}],\"cardScripts\":[],\"expansionLimit\":100,\"layoutTightness\":4,\"minZoom\":0.3,\"dropExpansionLimit\":500,\"sidebarOpenState\":true,\"excludes\":[],\"entitiesToHideCount\":[],\"autoRecount\":true,\"sirenScripts\":[{\"id\":\"sirenapiscript:072e7b80-4226-11ec-8042-03e219b669ec\"}],\"msearchesMaxSize\":50,\"truncatedLabelLength\":30,\"rtlEnabled\":false,\"useDataModelImage\":true,\"type\":\"graph_browser_vis\"},\"aggs\":[],\"listeners\":{},\"version\":2,\"kibiSettings\":{}}",
+      "uiStateJSON": "{\"siren\":{\"sidebar\":{\"tab\":\"cards\"},\"lenses\":{\"lens\":{\"lens_91e8b658-1a50-495b-a34d-c9ebd04d5342\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15078da2-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Tooltip\",\"order\":0,\"params\":{\"entityId\":\"__$$ALL$__\",\"fieldName\":\"id\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_5d46a26c-dc51-4aa7-aac8-6ca7eabbab6c\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076690-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Cluster Name\",\"order\":1,\"params\":{\"entityId\":\"chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"condition\":\"payload[\\\"name\\\"] != null\",\"expression\":\"payload[\\\"name\\\"]\",\"imageMode\":\"url\",\"modelProperty\":{\"name\":\"label\",\"displayName\":\"Label (string)\",\"type\":\"string\",\"default\":\"'label content goes here'\"},\"when\":\"conditional\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_aaf507f5-859b-4780-a002-4f8a9051c4e1\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15078da3-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Cluster Size\",\"order\":2,\"params\":{\"entityId\":\"chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"expression\":\"payload[\\\"cluster_balance\\\"][\\\"transferCount\\\"]\",\"min\":0,\"max\":4,\"step\":0.1,\"tickInterval\":1,\"value\":[1.2,3.3],\"sizeScale\":\"linear\",\"selection\":[],\"methods\":{},\"legendTooltip\":true},\"visibility\":\"both\"}},\"lens_7a554829-dc7f-4a8c-9770-06eaba96d073\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076691-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Cluster Color\",\"order\":3,\"params\":{\"entityType\":\"chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907\",\"fieldName\":\"chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907.category\",\"selection\":[],\"methods\":{},\"legendTooltip\":true},\"visibility\":\"both\"}},\"lens_3396eacd-7abd-4b37-9e47-24e1d7ac1f07\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076691-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Counterparty Color\",\"order\":4,\"params\":{\"entityType\":\"chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907\",\"fieldName\":\"chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907.category\",\"selection\":[],\"methods\":{},\"legendTooltip\":true},\"visibility\":\"both\"}},\"lens_c881e611-cc4e-46fe-8960-48d85eb23f6d\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076693-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Counterparty Label\",\"order\":5,\"params\":{\"entityId\":\"chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"expression\":\"payload[\\\"asset\\\"] + \\\"\\\\\\\\n\\\" +(payload[\\\"sentAmount\\\"] + payload[\\\"receivedAmount\\\"])\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_fc9edb47-a6db-4ea2-9e2c-afa4197fd7bb\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076690-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Counterparty with Category\",\"order\":6,\"params\":{\"entityId\":\"chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"condition\":\"payload[\\\"category\\\"] != null\",\"expression\":\"payload[\\\"asset\\\"] + \\\"\\\\\\\\n\\\" +(payload[\\\"sentAmount\\\"] + payload[\\\"receivedAmount\\\"]) + \\\"\\\\\\\\n\\\" + payload[\\\"category\\\"]\",\"imageMode\":\"url\",\"modelProperty\":{\"name\":\"label\",\"displayName\":\"Label (string)\",\"type\":\"string\",\"default\":\"'label content goes here'\"},\"when\":\"conditional\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_3f4ab258-26f7-4b1b-aabd-f651546425a1\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15078da3-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Counterparty Size\",\"order\":7,\"params\":{\"entityId\":\"chainalysis1:search:da77e740-adcf-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"expression\":\"payload[\\\"transfers\\\"]\",\"min\":0,\"max\":4,\"step\":0.1,\"tickInterval\":1,\"value\":[1.2,3.4],\"sizeScale\":\"linear\",\"selection\":[],\"methods\":{},\"legendTooltip\":true},\"visibility\":\"both\"}},\"lens_2fb6d4d9-bc79-4c8d-87d2-4b7a58271a0a\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076690-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Cluster Official Icon\",\"order\":8,\"params\":{\"entityId\":\"chainalysis1:search:ce989dd0-adce-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"condition\":\"payload[\\\"category\\\"] == null\",\"expression\":\"'https://logosarchive.com/wp-content/uploads/2022/01/Chainalysis-icon.svg'\",\"imageMode\":\"url\",\"modelProperty\":{\"name\":\"pathIcon\",\"displayName\":\"Node image (string)\",\"type\":\"string\",\"default\":\"'https://cdn4.iconfinder.com/data/icons/fugue/icon_shadowless/dummy.png'\"},\"when\":\"conditional\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_b43b62a2-84ce-467f-b3cc-9b99211f21cd\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076690-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Bitcoins\",\"order\":9,\"params\":{\"entityId\":\"chainalysis1:eid:2c7cdf10-adcf-11ed-bcbb-6bce064db907\",\"entityIdSet\":{},\"condition\":\"(label | substring(0, 3)) == \\\"BTC\\\"\",\"expression\":\"'https://cryptologos.cc/logos/bitcoin-btc-logo.svg'\",\"imageMode\":\"url\",\"modelProperty\":{\"name\":\"pathIcon\",\"displayName\":\"Node image (string)\",\"type\":\"string\",\"default\":\"'https://cdn4.iconfinder.com/data/icons/fugue/icon_shadowless/dummy.png'\"},\"when\":\"conditional\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}},\"lens_cc95f530-f81b-4add-bd96-fab9f7ce37ae\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076691-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Exposure Color\",\"order\":10,\"params\":{\"entityType\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"fieldName\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a.category\",\"selection\":[],\"methods\":{},\"legendTooltip\":true},\"visibility\":\"both\"}},\"lens_78a799c2-742c-4ef7-a4ed-2bdb6dffe6d0\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15078da3-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Exposure Size\",\"order\":11,\"params\":{\"entityId\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"entityIdSet\":{},\"expression\":\"payload[\\\"percentage\\\"]\",\"min\":0,\"max\":4,\"step\":0.1,\"tickInterval\":1,\"value\":[1.2,2.5],\"sizeScale\":\"linear\",\"selection\":[],\"methods\":{},\"legendTooltip\":false},\"visibility\":\"both\"}},\"lens_4368a1f5-312d-4e25-8d10-7bc06a21642e\":{\"state\":{\"enabled\":true,\"scriptId\":\"script:15076693-416d-11ec-bb6d-7759b401663f\",\"displayName\":\"Exposure Label\",\"order\":12,\"params\":{\"entityId\":\"chainalysis1:search:bcbbe640-bb97-11ed-8bf3-73602963064a\",\"entityIdSet\":{},\"expression\":\"payload[\\\"percentage\\\"]+\\\"\\\\\\\\n\\\"+ payload[\\\"category\\\"] + \\\" \\\" + payload[\\\"name\\\"]\",\"selection\":[],\"methods\":{}},\"visibility\":\"both\"}}}},\"expansion\":{\"openSection\":\"relations-simple\",\"dashboards\":{\"dash\":[],\"hideUnselected\":false,\"showOnlyApplicable\":false,\"enabled\":false},\"simpleRelations\":{\"rel\":[{\"id\":\"chainalysis1:relation:4b2ba570-bb9b-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:21ac5320-bb9b-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:441ab780-bb9b-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:52b82c00-bb9b-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:5a0c3d70-bb9b-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:9a06fed0-bb9e-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:ab48b850-bb9e-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:ba79e150-bb9e-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:d51f19a0-b61f-11ed-84fb-476bd54e9b29\",\"checked\":true},{\"id\":\"chainalysis1:relation:52fa2500-b61f-11ed-84fb-476bd54e9b29\",\"checked\":true},{\"id\":\"relation: 3d9f7d50-b61e-11ed-b3df-afc49cf87dea\",\"checked\":true},{\"id\":\"relation: aa0de740-b620-11ed-b3df-afc49cf87dea\",\"checked\":true},{\"id\":\"relation: cbc8a1e0-bb98-11ed-a10f-b73ef33a9bc6\",\"checked\":true},{\"id\":\"relation: abc75070-bb99-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 13bb40b0-bb9a-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 98dbe920-bb9a-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: bfd106c0-bb9d-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 9a2e5260-bb9d-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:e2b573d0-b61e-11ed-84fb-476bd54e9b29\",\"checked\":true},{\"id\":\"relation: 9a059f40-bb9e-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: a2d1df80-bba3-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 19edee80-bb98-11ed-a10f-b73ef33a9bc6\",\"checked\":true},{\"id\":\"relation: ecdb5160-bb99-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 645eb740-bb9a-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 7ce13dc0-bb99-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: d51c3370-b61f-11ed-b3df-afc49cf87dea\",\"checked\":true},{\"id\":\"relation: 52f87750-b61f-11ed-b3df-afc49cf87dea\",\"checked\":true},{\"id\":\"relation: 217bf450-bb9b-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: 818eb190-b388-11ed-a146-318f6c329604\",\"checked\":true},{\"id\":\"chainalysis1:relation:aa0f94f0-b620-11ed-84fb-476bd54e9b29\",\"checked\":true},{\"id\":\"chainalysis1:relation:98de8130-bb9a-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: 4b27d4e0-bb9b-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:645f7a90-bb9a-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:abc813c0-bb99-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: 441957f0-bb9b-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:7ce20110-bb99-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:13be26e0-bb9a-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: 52b6f380-bb9b-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:ed0ac5d0-bb99-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:cbc9da60-bb98-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: 5a0c6480-bb9b-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:19ef7520-bb98-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: c7e10de0-b389-11ed-a146-318f6c329604\",\"checked\":true},{\"id\":\"relation: e2b329e0-b61e-11ed-b3df-afc49cf87dea\",\"checked\":true},{\"id\":\"chainalysis1:relation:a2d4ecc0-bba3-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"relation: 4d4f94d0-adcf-11ed-94d6-0382844a832c\",\"checked\":true},{\"id\":\"chainalysis1:relation:bfd4b040-bb9d-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:9b7be100-bb9d-11ed-8bf3-73602963064a\",\"checked\":true},{\"id\":\"chainalysis1:relation:f542a370-b389-11ed-8bec-4d4ea0e3c446\",\"checked\":true},{\"id\":\"relation: ab481c10-bb9e-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"relation: ba7833a0-bb9e-11ed-b2d7-9fdb95ed4417\",\"checked\":true},{\"id\":\"chainalysis1:relation:e9b6dbc0-b389-11ed-8bec-4d4ea0e3c446\",\"checked\":true},{\"id\":\"chainalysis1:relation:3dcf18d0-b61e-11ed-84fb-476bd54e9b29\",\"checked\":true},{\"id\":\"relation: f5422e40-b389-11ed-a146-318f6c329604\",\"checked\":true},{\"id\":\"chainalysis1:relation:4d4f94d0-adcf-11ed-bcbb-6bce064db907\",\"checked\":true},{\"id\":\"relation: e9867cf0-b389-11ed-a146-318f6c329604\",\"checked\":true},{\"id\":\"chainalysis1:relation:818f4dd0-b388-11ed-8bec-4d4ea0e3c446\",\"checked\":true},{\"id\":\"chainalysis1:relation:c8100d20-b389-11ed-8bec-4d4ea0e3c446\",\"checked\":true}],\"filterValue\":\"\",\"hideUnselected\":false,\"showOnlyApplicable\":true,\"enabled\":true},\"aggrRelations\":{\"aggrRel\":[],\"filterValue\":\"\",\"hideUnselected\":false,\"innerExpansion\":false,\"enabled\":false,\"showOnlyApplicable\":true}},\"cards\":[{\"id\":\"a2b51341-25c0-472f-854d-c5bc79390b97\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"category\",\"Contiguous valuss\":false,\"None selected\":false,\"Label\":\"Category\"},\"enabled\":true},{\"id\":\"e3b9aac4-df01-423c-bc88-634b479858af\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"name\",\"Label\":\"Name\",\"Contiguous valuss\":false,\"None selected\":false},\"enabled\":true},{\"id\":\"1388604b-d9ed-4168-b203-9610f6132a6d\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"receivedAmount\",\"Label\":\"receivedAmount\",\"Contiguous valuss\":true,\"None selected\":true},\"enabled\":true},{\"id\":\"d8d8d561-a927-4105-b522-6e56be96c763\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"sentAmount\",\"Label\":\"sentAmount\",\"Contiguous valuss\":true,\"None selected\":true},\"enabled\":true},{\"id\":\"42c3bf92-8e27-4724-ac6c-4a98afe5cb84\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"exposure.category\",\"Label\":\"Exposure. Category\",\"Contiguous valuss\":true,\"None selected\":true},\"enabled\":true},{\"id\":\"0ccc4207-0d24-489c-a1d3-873835f76458\",\"cardType\":\"Histogram\",\"config\":{\"Field\":\"percentage\",\"Label\":\"Percentage\",\"Contiguous valuss\":true,\"None selected\":true},\"enabled\":true}]}}",
+      "description": "",
+      "savedSearchInherit": false,
+      "scriptIds": [
+        "sirenapiscript:072e7b80-4226-11ec-8042-03e219b669ec"
+      ],
+      "version": 5,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "chainalysis1:dashboard:04bc8560-add0-11ed-bcbb-6bce064db907",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Chainalysis Graph",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"size_x\":6,\"size_y\":3,\"panelIndex\":1,\"type\":\"visualization\",\"id\":\"chainalysis1:visualization:1ef79be0-add0-11ed-bcbb-6bce064db907\",\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false,\"hideSearchBar\":false,\"showTimePicker\":true}",
+      "uiStateJSON": "{\"expandedPanelIndex\":1}",
+      "version": 6,
+      "timeRestore": false,
+      "coatJSON": "{\"items\":[],\"datamodelType\":\"NO_SEARCH\",\"node\":null}",
+      "scriptIds": [],
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[],\"highlightAll\":true,\"version\":true,\"query\":{\"match_all\":{}}}"
+      }
+    },
+    "namespace": "chainalysis1"
+  },
+  {
+    "_id": "sirenapiscript:9cf31a30-b567-11ed-a36a-ef9ab8353e68",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Address to Cluster Info",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\nconst type = \"custom\";\nconst {\n    EuiLoadingSpinner,\n    EuiTextAlign,\n    EuiText,\n    EuiImage\n} = Eui;\nconst config = {\n    expandRelations: [\n    ], // give relationids if you dont want to show modal, otherwise leave blank\n    titleText: \"Chainalysis IAPI - Cluster\",\n    destination: \"Chainalysis Clusters\",\n    uri_1: [\n        \"VIRTUAL_ENTITY\",\n   ],\n    secondsearch: \"web-service-chainalysis-iapi-cluster_counterparties-results-counterparties\",\n    WSName: 'chainalysis-iapi',\n    WSType: 'cluster_combined_info',\n    WSStoreData: true,\n    WSReturnData: true,\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\n}\nvar mydata = []\nvar ids = []\nfunction ModalContentElement() {\n    const [showLoading, setLoading] = React.useState(true);\n    const [showLoaded, setLoaded] = React.useState(false);\n    const [invocated, setInvocated] = React.useState(false);\n    const [resultCount, setResultCount] = React.useState(0);\n    const [searchedCount, setSearchedCount] = React.useState(0);\n    const [selectedCount, setSelectedCount] = React.useState(0);\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\n    const [foundNodes, setFoundNodes] = React.useState(false);\n    const [showBad, setShowBad] = React.useState(false);\n    const getSelectedNodes = async () => {\n        let temp = await currentVisualization.selection();\n        if (temp.length == 0) {\n            setLoaded(false)\n            setLoading(false)\n            setShowBad(true)\n            throw new Error('Must Select a Node');\n        }\n        setSelectedNodes(temp);\n    };\n    if (!foundNodes) {\n        getSelectedNodes();\n        setFoundNodes(true);\n    }\n    async function graphDo() {\n        if (invocated == false) {\n            console.log(selectedNodes)\n            setSelectedCount(selectedNodes.length)\n            console.log('Running Web Services')\n            await Promise.all(selectedNodes.map(async node => {\n                setInvocated(true)\n                ids.push(node.id)\n                let queryString = node.id.split(\"/\")[2];\n                let splitQuery = queryString.split('%3A');\n                let matched = false\n                config.uri_1.map(uri => {\n                    if (uri == node.id.split(\"/\")[0]) {\n                        matched = true\n                    }\n                })\n                if (matched == false) {\n                    setLoaded(false)\n                    setLoading(false)\n                    setShowBad(true)\n                    throw new Error('Must Select The Right Nodes');\n                }\n                const invocation = await sirenapi.invokeWebService(\n                    config.WSName,\n                    config.WSType,\n                    {\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\n                        address: splitQuery[1].replace(/\\W|\"/, '')\n                    },\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\n                )\n                setSearchedCount(searchedCount + 1)\n                console.log(node.label + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)\n                if (invocation.statusText == 'OK') {\n                    mydata.push(invocation.data.cluster)\n                    setResultCount(resultCount + invocation.data.cluster.length)\n                }\n                setSearchedCount(searchedCount + 1)\n            })).then(function () {\n                console.log('Done with Web Services')\n                console.log(mydata)\n                setLoaded(true)\n                setLoading(false)\n            })\n        }\n    }\n    if (selectedNodes.length >= 1 && !invocated) {\n        graphDo()\n    }\n    const renderLoading = () => {\n        return (\n            <div>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiLoadingSpinner size=\"xl\" />\n                </EuiTextAlign>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\n                </EuiTextAlign>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\n                </EuiTextAlign>\n            </div>\n        )\n    }\n    const renderLoaded = () => {\n        return (\n            <div>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiImage\n                        allowFullScreen\n                        url={config.bannerUrl}\n                        size=\"l\"\n                        width={150}\n                    />\n                </EuiTextAlign>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\n                </EuiTextAlign>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\n                </EuiTextAlign>\n            </div>\n        )\n    }\n    const renderBad = () => {\n        return (\n            <div>\n                <EuiTextAlign textAlign=\"center\">\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\n                </EuiTextAlign>\n            </div>\n        )\n    }\n    return (\n        <div>\n            {showLoading ? renderLoading() : null}\n            {showLoaded ? renderLoaded() : null}\n            {showBad ? renderBad() : null}\n        </div>\n    )\n}\ncurrentDashboard.openModal({\n    Element: <ModalContentElement />,\n    titleText: config.titleText,\n    primaryText: \"Expand Node\",\n    onPrimaryClick: () => {\n        currentVisualization.expandByRelation({\n            nodeIds: [],\n            relationIds: config.expandRelations\n        })\n    },\n    cancelText: \"Close Panel\",\n    onCancel: () => {\n    },\n});\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:b26d43e0-b580-11ed-a36a-ef9ab8353e68",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Cluster to Counterparty",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster Counterparties\",\r\n    destination: \"Cluster Counterparties\",\r\n    uri_1: [\r\n        \"web-service-chainalysis-iapi-cluster_combined_info-results-cluster\",\r\n    ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'cluster_counterparties',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let queryString = node.id.split(\"/\")[2];\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                let splitQuery = queryString.split('%3A');\r\n                let invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[1].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                setSearchedCount(searchedCount + 1)\r\n                console.log(node.label + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.counterparties)\r\n                    setResultCount(resultCount + invocation.data.counterparties.length)\r\n                }\r\n            })).then(function () {\r\n                console.log('Done with Web Services')\r\n                console.log(mydata)\r\n                setLoaded(true)\r\n                setLoading(false)\r\n            })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:cbf663b0-bb0b-11ed-aac0-ed7e89e7dcc1",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Cluster to Exposure",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster Exposure\",\r\n    destination: \"Cluster Exposure\",\r\n    uri_1: [\r\n        \"web-service-chainalysis-iapi-cluster_combined_info-results-cluster\",\r\n    ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'cluster_exposure',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let queryString = node.id.split(\"/\")[2];\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                let splitQuery = queryString.split('%3A');\r\n                let invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[1].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                setSearchedCount(searchedCount + 1)\r\n                console.log(node.id + ' ' + invocation.statusText)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.exposure)\r\n                    setResultCount(resultCount + invocation.data.exposure.length)\r\n                }\r\n            })).then(function () {\r\n                console.log('Done with Web Services')\r\n                console.log(mydata)\r\n                setLoaded(true)\r\n                setLoading(false)\r\n            })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:899578f0-b640-11ed-93d4-b198d6ac2ced",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Cluster to Observation",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster Observation\",\r\n    destination: \"Cluster Observation\",\r\n    uri_1: [\r\n        \"web-service-chainalysis-iapi-cluster_combined_info-results-cluster\",\r\n    ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'cluster_observations',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let queryString = node.id.split(\"/\")[2];\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                let splitQuery = queryString.split('%3A');\r\n                let invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[1].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                setSearchedCount(searchedCount + 1)\r\n                console.log(node.id + ' ' + invocation.statusText)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.observation)\r\n                    setResultCount(resultCount + invocation.data.observation.length)\r\n                }\r\n            })).then(function () {\r\n                console.log('Done with Web Services')\r\n                console.log(mydata)\r\n                setLoaded(true)\r\n                setLoading(false)\r\n            })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:715a85f0-b645-11ed-93d4-b198d6ac2ced",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Cluster to All Transactions",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster Transaction\",\r\n    destination: \"Cluster Transaction\",\r\n    uri_1: [\r\n        \"web-service-chainalysis-iapi-cluster_combined_info-results-cluster\",\r\n    ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'cluster_transactions',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let queryString = node.id.split(\"/\")[2];\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                let splitQuery = queryString.split('%3A');\r\n                let invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[1].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                setSearchedCount(searchedCount + 1)\r\n                console.log(node.id + ' ' + invocation.statusText)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.transaction)\r\n                    setResultCount(resultCount + invocation.data.transaction.length)\r\n                }\r\n            })).then(function () {\r\n                console.log('Done with Web Services')\r\n                console.log(mydata)\r\n                setLoaded(true)\r\n                setLoading(false)\r\n            })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:9b120ad0-b63b-11ed-93d4-b198d6ac2ced",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Counterparty to Cluster Info",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster\",\r\n    destination: \"Chainalysis Clusters\",\r\n    uri_1: [\r\n        \"web-service-chainalysis-iapi-cluster_counterparties-results-counterparties\",\r\n   ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'cluster_combined_info',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let queryString = node.id.split(\"/\")[2];\r\n                let splitQuery = queryString.split('%3A');\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                const invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[2].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                \r\n                console.log(node.id + ' ' + invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.cluster)\r\n                    setResultCount(resultCount + invocation.data.cluster.length)\r\n                }\r\n                const input_invocation = sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        asset: splitQuery[0].replace(/\\W|\"/, ''),\r\n                        address: splitQuery[1].replace(/\\W|\"/, '')\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                if (input_invocation.statusText == 'OK') {\r\n                    mydata.push(input_invocation.data.cluster)\r\n                    setResultCount(resultCount + input_invocation.data.cluster.length)\r\n                }\r\n                console.log(node.id + ' ' + input_invocation.statusText + ' next: ' + invocation.data.pagination.nextPage)\r\n            })).then(function () {\r\n                    console.log('Done with Web Services')\r\n                    console.log(mydata)\r\n                    setLoaded(true)\r\n                    setLoading(false)\r\n                })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  },
+  {
+    "_id": "sirenapiscript:709464e0-b647-11ed-93d4-b198d6ac2ced",
+    "_type": "sirenapiscript",
+    "_source": {
+      "apiVersion": 1,
+      "title": "Chainalysis - Ip Address to Observation",
+      "type": "custom",
+      "description": "",
+      "version": 4,
+      "scriptSource": "const version = 1;\r\nconst type = \"custom\";\r\nconst {\r\n    EuiLoadingSpinner,\r\n    EuiTextAlign,\r\n    EuiText,\r\n    EuiImage\r\n} = Eui;\r\nconst config = {\r\n    expandRelations: [\r\n    ], // give relationids if you dont want to show modal, otherwise leave blank\r\n    titleText: \"Chainalysis IAPI - Cluster Observation\",\r\n    destination: \"Cluster Observation\",\r\n    uri_1: [\r\n        \"VIRTUAL_ENTITY\",\r\n    ],\r\n    WSName: 'chainalysis-iapi',\r\n    WSType: 'ip_observations',\r\n    WSStoreData: true,\r\n    WSReturnData: true,\r\n    bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'\r\n}\r\nvar mydata = []\r\nvar ids = []\r\nfunction ModalContentElement() {\r\n    const [showLoading, setLoading] = React.useState(true);\r\n    const [showLoaded, setLoaded] = React.useState(false);\r\n    const [invocated, setInvocated] = React.useState(false);\r\n    const [resultCount, setResultCount] = React.useState(0);\r\n    const [selectedCount, setSelectedCount] = React.useState(0);\r\n    const [selectedNodes, setSelectedNodes] = React.useState([]);\r\n    const [foundNodes, setFoundNodes] = React.useState(false);\r\n    const [showBad, setShowBad] = React.useState(false);\r\n    const [searchedCount, setSearchedCount] = React.useState(0);\r\n    const getSelectedNodes = async () => {\r\n        let temp = await currentVisualization.selection();\r\n        if (temp.length == 0) {\r\n            setLoaded(false)\r\n            setLoading(false)\r\n            setShowBad(true)\r\n            throw new Error('Must Select a Node');\r\n        }\r\n        setSelectedNodes(temp);\r\n    };\r\n    if (!foundNodes) {\r\n        getSelectedNodes();\r\n        setFoundNodes(true);\r\n    }\r\n    async function graphDo() {\r\n        if (invocated == false) {\r\n            console.log(selectedNodes)\r\n            setSelectedCount(selectedNodes.length)\r\n            console.log('Running Web Services')\r\n            await Promise.all(selectedNodes.map(async node => {\r\n                setInvocated(true)\r\n                ids.push(node.id)\r\n                let matched = false\r\n                config.uri_1.map(uri => {\r\n                    if (uri == node.id.split(\"/\")[0]) {\r\n                        matched = true\r\n                    }\r\n                })\r\n                if (matched == false) {\r\n                    setLoaded(false)\r\n                    setLoading(false)\r\n                    setShowBad(true)\r\n                    throw new Error('Must Select The Right Nodes');\r\n                }\r\n                let invocation = await sirenapi.invokeWebService(\r\n                    config.WSName,\r\n                    config.WSType,\r\n                    {\r\n                        ip: node.label\r\n                    },\r\n                    { storeData: config.WSStoreData, returnData: config.WSReturnData }\r\n                )\r\n                setSearchedCount(searchedCount + 1)\r\n                console.log(node.id + ' ' + invocation.statusText)\r\n                if (invocation.statusText == 'OK') {\r\n                    mydata.push(invocation.data.observation)\r\n                    setResultCount(resultCount + invocation.data.observation.length)\r\n                }\r\n            })).then(function () {\r\n                console.log('Done with Web Services')\r\n                console.log(mydata)\r\n                setLoaded(true)\r\n                setLoading(false)\r\n            })\r\n        }\r\n    }\r\n    if (selectedNodes.length >= 1 && !invocated) {\r\n        graphDo()\r\n    }\r\n    const renderLoading = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiLoadingSpinner size=\"xl\" />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loading {resultCount} {config.destination}, Searched {searchedCount}/{selectedCount} Selected Nodes</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderLoaded = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiImage\r\n                        allowFullScreen\r\n                        url={config.bannerUrl}\r\n                        size=\"l\"\r\n                        width={150}\r\n                    />\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Loaded {resultCount} {config.destination} for {selectedCount} Selected</EuiText>\r\n                </EuiTextAlign>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Press OK to Expand or Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    const renderBad = () => {\r\n        return (\r\n            <div>\r\n                <EuiTextAlign textAlign=\"center\">\r\n                    <EuiText>Wrong Nodes or No Nodes Selected, Press Cancel to close</EuiText>\r\n                </EuiTextAlign>\r\n            </div>\r\n        )\r\n    }\r\n    return (\r\n        <div>\r\n            {showLoading ? renderLoading() : null}\r\n            {showLoaded ? renderLoaded() : null}\r\n            {showBad ? renderBad() : null}\r\n        </div>\r\n    )\r\n}\r\ncurrentDashboard.openModal({\r\n    Element: <ModalContentElement />,\r\n    titleText: config.titleText,\r\n    primaryText: \"Expand Node\",\r\n    onPrimaryClick: () => {\r\n        currentVisualization.expandByRelation({\r\n            nodeIds: [],\r\n            relationIds: config.expandRelations\r\n        })\r\n    },\r\n    cancelText: \"Close Panel\",\r\n    onCancel: () => {\r\n    },\r\n});\r\n"
+    }
+  }
+]

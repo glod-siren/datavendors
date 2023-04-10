@@ -1,0 +1,142 @@
+#!/usr/bin/env node
+
+const webServiceInterface = require('@sirensolutions/web-service-interface');
+const sinon = require('sinon');
+const minimist = require('minimist');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+
+async function main() {
+  const invocationParameters = parseArguments();
+
+  await compileTypescript();
+  const [Service, config] = await getRegistrationInfo(invocationParameters.service);
+  validateProvidedConfig(config, invocationParameters);
+
+  const service = new Service(invocationParameters.config);
+  validateInputs(service.inputSchema, invocationParameters.inputs);
+
+  const results = await service.invoke(invocationParameters.inputs);
+  validateResultStructure(service.outputConfiguration, results);
+
+  console.log(JSON.stringify(results, null, 2));
+  info(`\nWeb service is written correctly!`)
+}
+
+function parseArguments() {
+  const args = minimist(process.argv.slice(2));
+
+  if (args['-h'] || args['--help'] || args._.length === 0) {
+    help();
+    process.exit();
+  }
+
+  if (args._.length !== 1) {
+    throw new Error('There should only be one positional argument (i.e. the web service to invoke)');
+  }
+
+  const invocationParameters = {
+    service: args._[0],
+    inputs: {},
+    config: {}
+  };
+
+  for (const [arg, value] of Object.entries(args)) {
+    if (arg.startsWith('input:')) {
+      invocationParameters.inputs[arg.replace(/^input:/, '')] = value;
+    } else if (arg.startsWith('config:')) {
+      invocationParameters.config[arg.replace(/^config:/, '')] = value;
+    } else if (!['_', 'debug'].includes(arg)) {
+      throw new Error(`Unexpected argument: --${arg}`);
+    }
+  }
+
+  return invocationParameters;
+}
+
+function help() {
+  warn('Usage: npm run invoker <service> --input:<input1> <value> --config:<config1> <value>\n');
+  warn('  Example: npm run invoker DuckduckgoScraper --input:query ireland\n');
+}
+
+async function compileTypescript() {
+  try {
+    await exec('npx gulp compile');
+  } catch (err) {
+    err.message = 'Could not compile Typescript:\n\n' + err.stdout + err.stderr;
+    throw err
+  }
+}
+
+function getRegistrationInfo(serviceName) {
+  return new Promise((resolve, reject) => {
+    sinon.stub(webServiceInterface, 'registerServices')
+      .callsFake((group, serviceClasses, config) => {
+        const ServiceClass = serviceClasses.find(Service => new Service().name === serviceName);
+        if (ServiceClass) {
+          resolve([ServiceClass, config]);
+        } else {
+          reject(new Error(`Web service '${serviceName}' not registered. Choose one of [${serviceClasses.map(Service => new Service().name)}]`));
+        }
+      });
+    require('./dist/src');
+  });
+}
+
+function validateProvidedConfig(config, invocationParameters) {
+  const validation = webServiceInterface.Joi.object(config).validate(invocationParameters.config);
+  if (validation.error) {
+    throw new Error(`You must provide a --config:${validation.error.details[0].path} argument`);
+  }
+}
+
+function validateInputs(inputSchema, inputs) {
+  const errors = [];
+
+  Object.entries(inputs).forEach(([param, value]) => {
+    if (!inputSchema[param]) {
+      errors.push(`Parameter provided, but is not expected: --input:${param}`);
+    } else if (inputSchema[param].type === 'text' && typeof value === 'boolean') {
+      errors.push(`A value must be provided: --input:${param} value`);
+    } else if (inputSchema[param].type === 'boolean' && typeof value !== 'boolean') {
+      errors.push(`Must not have value (i.e. must be boolean): --input:${param}`);
+    } else if (inputSchema[param].type === 'date' && !moment(value).isValid) {
+      errors.push(`Must be a valid date: --input:${param}`);
+    }
+  });
+
+  Object.entries(inputSchema)
+    .filter(([param, paramInfo]) => paramInfo.required && !inputs[param])
+    .forEach(([param]) => errors.push(`Parameter required, but not provided: --input:${param}`));
+
+  if (errors.length) {
+    throw new Error(`Inputs are invalid:\n  ${errors.join('\n  ')}`);
+  }
+}
+
+function validateResultStructure(outputConfiguration, results) {
+  if (!Object.keys(outputConfiguration) === Object.keys(results)) {
+    throw new Error(`Expected the following keys in the response:\n  ${Object.keys(outputConfiguration)}\nBut got:\n  ${Object.keys(results)}`);
+  }
+}
+
+function info(string) {
+  // Using warn so text is output to stderr (stdout reserved for result info)
+  console.warn(`\x1b[32m${string}\x1b[0m`);
+}
+
+function error(string) {
+  console.error(`\x1b[31m${string}\x1b[0m`);
+}
+
+function warn(string) {
+  console.warn(`\x1b[33m${string}\x1b[0m`);
+}
+
+main()
+  .catch(err => {
+    if (err instanceof webServiceInterface.WebServiceError) {
+      err.message = `${err.message}:\n${JSON.stringify(err.data, null, 2)}`;
+    }
+    error(process.argv.includes('--debug') ? `${err.stack}\n` : `Error: ${err.message}\n`);
+  });

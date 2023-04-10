@@ -1,0 +1,36 @@
+{
+  "name": "context-toolkit",
+  "version": "1.0.0",
+  "kibana": {
+    "version": "5.6.10"
+  },
+  "license": "ISC",
+  "main": "src/index",
+  "scripts": {
+    "package": "gulp package"
+  },
+  "dependencies": {
+    "@sirensolutions/web-service-interface": "^0.7.4",
+    "@types/node": "^14.14.35",
+    "axios": "^0.19.2",
+    "crypto": "^1.0.1",
+    "duck-duck-scrape": "^2.2.3",
+    "email-validator": "^2.0.4",
+    "extract-domain": "^2.4.8",
+    "libphonenumber-js": "^1.10.26"
+  },
+  "devDependencies": {
+    "fs-extra": "^8.1.0",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^5.0.1",
+    "gulp-zip": "^5.0.1",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "sinon": "^8.1.0",
+    "typescript": "^3.7.2"
+  }
+}

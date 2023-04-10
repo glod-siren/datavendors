@@ -1,0 +1,13 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const web_service_interface_1 = require("@sirensolutions/web-service-interface");
+//import OpenAITextCompletionDriver from './OpenAITextCompletionDriver';
+const DuckDuckGoScraperDriver_1 = __importDefault(require("./DuckDuckGoScraperDriver"));
+const configSchema = {};
+module.exports = web_service_interface_1.registerServices('context-toolkit', [
+    DuckDuckGoScraperDriver_1.default
+], configSchema);
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsaUZBQThFO0FBQzlFLHdFQUF3RTtBQUN4RSx3RkFBZ0U7QUFFaEUsTUFBTSxZQUFZLEdBQUcsRUFDcEIsQ0FBQztBQUVGLGlCQUFTLHdDQUFnQixDQUFDLGlCQUFpQixFQUFFO0lBQzNDLGlDQUF1QjtDQUN4QixFQUFFLFlBQVksQ0FBQyxDQUFDIiwiZmlsZSI6InNyYy9pbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEpvaSwgcmVnaXN0ZXJTZXJ2aWNlcyB9IGZyb20gJ0BzaXJlbnNvbHV0aW9ucy93ZWItc2VydmljZS1pbnRlcmZhY2UnO1xuLy9pbXBvcnQgT3BlbkFJVGV4dENvbXBsZXRpb25Ecml2ZXIgZnJvbSAnLi9PcGVuQUlUZXh0Q29tcGxldGlvbkRyaXZlcic7XG5pbXBvcnQgRHVja0R1Y2tHb1NjcmFwZXJEcml2ZXIgZnJvbSAnLi9EdWNrRHVja0dvU2NyYXBlckRyaXZlcic7XG5cbmNvbnN0IGNvbmZpZ1NjaGVtYSA9IHtcbn07XG5cbmV4cG9ydCA9IHJlZ2lzdGVyU2VydmljZXMoJ2NvbnRleHQtdG9vbGtpdCcsIFtcbiAgRHVja0R1Y2tHb1NjcmFwZXJEcml2ZXJcbl0sIGNvbmZpZ1NjaGVtYSk7Il19
