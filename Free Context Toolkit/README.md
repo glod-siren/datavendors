@@ -15,7 +15,7 @@ This project is a public accessible sandbox for experimental data source connect
 
 After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit using the Siren API:
 
-```javascript
+```typescript
 let invocation = await sirenapi.invokeWebService(
   config.WSName,
   config.WSType,
@@ -25,12 +25,13 @@ let invocation = await sirenapi.invokeWebService(
   },
   { storeData: config.WSStoreData, returnData: config.WSReturnData }
 );
+```
 
 ## Modifying Pattern Matching
 
 The `matchingObject.ts` file contains an array of objects that define pattern matches for various types of data. To modify the pattern matching, edit the regular expressions defined in the `matching` array
 
-```javascript
+```typescript
 export const matching = [
     {
         name: 'phoneRegex',
@@ -64,6 +65,6 @@ export const matching = [
         name: 'domainRegex',
         pattern: /(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]+)\.([a-zA-Z]{2,63})(?:\/\S*)?/gi
     },
-...
+[...]
 ]
-
+```
