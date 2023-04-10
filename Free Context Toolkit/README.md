@@ -15,13 +15,23 @@ This project is a public accessible sandbox for experimental data source connect
 
 After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit using the Siren API:
 
-```typescript
+```javascript
+const config = {
+    titleText: "Search DuckDuck Go Top 20",
+    destination: "DuckDuckGo",
+    WSName: 'context-toolkit',
+    WSType: 'duckduckgo-scraper',
+    WSStoreData: true,
+    WSReturnData: true,
+    bannerUrl: 'https://duckduckgo.com/_next/static/media/logo-horizontal-dark.53712807.svg',
+}
+
 let invocation = await sirenapi.invokeWebService(
   config.WSName,
   config.WSType,
   {
-    query: node.label,
-    numPages: 1
+    query: variable //replace variable with whatever is getting the query such as a modal
+    numPages: 1 // put in the number of pages you want to return, pages are usually 20-30 results each
   },
   { storeData: config.WSStoreData, returnData: config.WSReturnData }
 );
