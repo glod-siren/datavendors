@@ -14,7 +14,11 @@ export default class DuckDuckGoScraperDriver extends ServiceDefinition {
 
   readonly inputSchema: InputSchema = {
     query: { type: 'text', required: true },
-    numPages: { type: 'long', required: false },
+    cropNumber: { type: 'text', required: true },
+    numPages: { type: 'text', required: false },
+    exact_search: { type: 'text', required: false },
+    site_search: { type: 'text', required: false },
+
   };
 
   readonly outputConfiguration: OutputConfiguration = {
@@ -28,31 +32,41 @@ export default class DuckDuckGoScraperDriver extends ServiceDefinition {
 
   async invoke(inputs: {
     query: string,
-    numPages?: number
+    cropNumber: string
+    numPages?: string,
+    exact_search?: string,
+    site_search?: string,
   }): Promise<DataIndexResults> {
+    const { query, cropNumber, exact_search, site_search } = inputs;
+    // Wrap query in double quotes if exact_search is true
+    const searchQuery = inputs.exact_search === 'true' ? `+${inputs.query.split(' ').join(' AND +')} AND "${inputs.query}"` : inputs.query;
+  
+    // Append site search string if provided
+    const siteQuery = inputs.site_search ? ` AND site:${inputs.site_search}` : '';
     const searchOptions: DDG.SearchOptions = {offset: 0, vqd: ''};
-    const results = await DDG.search(inputs.query, {offset: 0, vqd: ''}).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-    const numPages = inputs.numPages ?? 1;
-    for (let i = 2; i <= numPages; i++) {
+    const results = await DDG.search(searchQuery + siteQuery, {offset: 0, vqd: ''}).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
+    const numPages = inputs.numPages ?? '20';
+    for (let i = 2; i <= Number.parseInt(numPages); i++ && results.results.length < Number.parseInt(cropNumber)) {
       const currentSearchOptions: DDG.SearchOptions = {
         ...searchOptions,
         offset: results.results.length
       };
       try {
-        const currentResults = await DDG.search(inputs.query, currentSearchOptions)
+        const currentResults = await DDG.search(searchQuery + siteQuery, currentSearchOptions)
           .catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        results.results.push(...currentResults.results);
+        results.results.push.apply(currentResults.results);
       } catch {
         break;
       }
     }
-
     let htmlRegex = /<[^>]*>/g;
-    const structured_content = await Promise.all(results.results.map(async result => {
+    const croppedResults = results.results.slice(0, Number.parseInt(cropNumber));
+
+    const structured_content = croppedResults.map((result, index) => {
       const title = result.title;
       const url = result.url;
-      const snippet = result.title + " " + result.url + " " + result.description.replace(htmlRegex, "");;
-      const rawDescription = result.rawDescription.replace(htmlRegex, "");;
+      const snippet = result.title + " " + result.url + " " + result.description.replace(htmlRegex, "");
+      const rawDescription = result.rawDescription.replace(htmlRegex, "");
       const icon = result.icon;
       let pattern_matches: Matches = {};
       matching.forEach((match) => {
@@ -118,13 +132,14 @@ export default class DuckDuckGoScraperDriver extends ServiceDefinition {
         icon,
         pattern_matches,
         retrievedAt: new Date().toISOString(),
-        rawDescription
+        rawDescription,
+        position: index + 1
       };
-    }));
+    });
     return {
       structured_content,
       debug: [{
-        resultCount: results.results.length
+        resultCount: croppedResults.length
       }]
     };
   }

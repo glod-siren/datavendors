@@ -13,7 +13,7 @@ This project is a public accessible sandbox for experimental data source connect
 
 ## Usage
 
-After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit's `duckduckgo-scraper` using the Siren API:
+After installing the Context Toolkit into the Siren Platform, it can be invoked using the Siren API. Here is an example of invoking the toolkit's `duckduckgo-scraper` (`duckduckgo-image-scraper` or `duckduckgo-news-scraper` )or using the Siren API:
 
 ```javascript
 const config = {
@@ -26,15 +26,17 @@ const config = {
     bannerUrl: 'https://duckduckgo.com/_next/static/media/logo-horizontal-dark.53712807.svg',
 }
 
-let query_var = "Siren.io Web Service";
-let page_var = 1; 
+let query_var = "Siren.io Web Service"; // The query to run
+let crop_var = 10; // how many records you want returned, for example cropping just the 10 top results.
+let exact_var = 'true' // if you want to attempt an exact search by making a special syntax from your query
 
 let invocation = await sirenapi.invokeWebService(
   config.WSName,
   config.WSType,
   {
     query: query_var,
-    numPages: page_var
+    cropNumber: crop_var,
+    exact_search: exact_var
   },
   { storeData: config.WSStoreData, returnData: config.WSReturnData }
 );

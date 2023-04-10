@@ -9,7 +9,7 @@ const {
 const config = {
     expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank
-    titleText: "Search DuckDuck Go Top 20",
+    titleText: "Search DuckDuck Go Top 10 Search Results",
     destination: "DuckDuckGo",
     uri_1: [ // add the indices you want to allow to use this script
    ],
@@ -78,7 +78,9 @@ function ModalContentElement() {
                     config.WSType,
                     {
                         query: node.label,
-                        numPages: 1
+                        numPages: 1,
+                        cropNumber: 10,
+                        exact_search: true
                     },
                     { storeData: config.WSStoreData, returnData: config.WSReturnData }
                 )
