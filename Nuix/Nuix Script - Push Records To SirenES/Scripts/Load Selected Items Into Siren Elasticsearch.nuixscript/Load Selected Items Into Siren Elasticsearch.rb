@@ -18,6 +18,105 @@ catch_count = config['catch_count']
 # Specify the metadata profile to use
 metadata_profile = $current_case.getMetadataProfileStore().getMetadataProfile(metadata_profile_name)
 
+# Test the Elasticsearch connection and get the cluster health
+puts "Testing Elasticsearch connection and getting cluster health..."
+request_url = "#{elasticsearch_url}/_cluster/health"
+request_uri = URI.parse(request_url)
+request = Net::HTTP::Get.new(request_uri)
+request.basic_auth(username, password) unless username == 'noauth'
+response = Net::HTTP.start(request_uri.hostname, request_uri.port, use_ssl: request_uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+  http.request(request)
+end
+
+if response.code.to_i == 200
+  health = JSON.parse(response.body)["status"]
+  puts "Elasticsearch connection test successful"
+  puts "Cluster health: #{health}"
+else
+  puts "Error testing Elasticsearch connection: #{response.code} #{response.message}"
+  exit 1
+end
+
+# Delete any existing Elasticsearch index templates
+delete_template_url = "#{elasticsearch_url}/_index_template/nuix_case_metadata_v1"
+delete_template_uri = URI.parse(delete_template_url)
+delete_template_request = Net::HTTP::Delete.new(delete_template_uri)
+delete_template_request.basic_auth(username, password) unless username == 'noauth'
+delete_template_request.add_field('Content-Type', 'application/json')
+delete_template_response = Net::HTTP.start(delete_template_uri.hostname, delete_template_uri.port, use_ssl: delete_template_uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+  http.request(delete_template_request)
+end
+
+if delete_template_response.code.to_i == 200
+  puts "Deleted existing Elasticsearch index template"
+elsif delete_template_response.code.to_i == 404
+  puts "No existing Elasticsearch index template found"
+else
+  puts "Error deleting Elasticsearch index template: #{delete_template_response.code} #{delete_template_response.message}"
+  puts delete_template_response.body
+end
+
+# Delete any existing Elasticsearch index pipelines
+delete_pipeline_url = "#{elasticsearch_url}/_ingest/pipeline/nuix_case_metadata_v1"
+delete_pipeline_uri = URI.parse(delete_pipeline_url)
+delete_pipeline_request = Net::HTTP::Delete.new(delete_pipeline_uri)
+delete_pipeline_request.basic_auth(username, password) unless username == 'noauth'
+delete_pipeline_request.add_field('Content-Type', 'application/json')
+delete_pipeline_response = Net::HTTP.start(delete_pipeline_uri.hostname, delete_pipeline_uri.port, use_ssl: delete_pipeline_uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+  http.request(delete_pipeline_request)
+end
+
+if delete_pipeline_response.code.to_i == 200
+  puts "Deleted existing Elasticsearch index pipeline"
+elsif delete_pipeline_response.code.to_i == 404
+  puts "No existing Elasticsearch index pipeline found"
+else
+  puts "Error deleting Elasticsearch index pipeline: #{delete_pipeline_response.code} #{delete_pipeline_response.message}"
+  puts delete_pipeline_response.body
+end
+
+# Apply Elasticsearch index template
+puts "Applying Elasticsearch index template..."
+template_url = "#{elasticsearch_url}/_index_template/nuix_case_metadata_v1"
+template_uri = URI.parse(template_url)
+template_request = Net::HTTP::Put.new(template_uri)
+template_request.basic_auth(username, password) unless username == 'noauth'
+template_request.add_field('Content-Type', 'application/json')
+template_request.body = File.read(File.join(File.dirname(__FILE__), 'template.json'))
+puts template_request.body
+puts template_uri
+template_response = Net::HTTP.start(template_uri.hostname, template_uri.port, use_ssl: template_uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+  http.request(template_request)
+end
+
+if template_response.code.to_i == 200
+  puts "Elasticsearch index template applied successfully"
+else
+  puts "Error applying Elasticsearch index template: #{template_response.code} #{template_response.message}"
+  exit 1
+end
+
+# Apply Elasticsearch index pipeline
+puts "Applying Elasticsearch index pipeline..."
+pipeline_url = "#{elasticsearch_url}/_ingest/pipeline/nuix_case_metadata_v1"
+pipeline_uri = URI.parse(pipeline_url)
+pipeline_request = Net::HTTP::Put.new(pipeline_uri)
+pipeline_request.basic_auth(username, password) unless username == 'noauth'
+pipeline_request.add_field('Content-Type', 'application/json')
+pipeline_request.body = File.read(File.join(File.dirname(__FILE__), 'pipeline.json'))
+puts pipeline_request.body
+puts pipeline_uri
+pipeline_response = Net::HTTP.start(pipeline_uri.hostname, pipeline_uri.port, use_ssl: pipeline_uri.scheme == 'https', verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
+  http.request(pipeline_request)
+end
+
+if pipeline_response.code.to_i == 200
+  puts "Elasticsearch index pipeline applied successfully"
+else
+  puts "Error applying Elasticsearch index pipeline: #{pipeline_response.code} #{pipeline_response.message}"
+  exit 1
+end
+
 # Specify the output directory
 output_directory = File.join(temp_directory, 'ES_BULK_LOAD_' + Time.now.strftime('%Y%m%d_%H%M%S'))
 Dir.mkdir(output_directory)
@@ -30,7 +129,7 @@ puts "Selected #{num_selected_items} item(s)"
 # Remove punctuation and replace spaces with underscores in header names
 header_fields = metadata_profile.get_metadata.map(&:get_name)
 header_fields = header_fields.map do |field|
-  field.gsub(/[\[\]\-\s]/, '').gsub(/  +/, ' ').gsub(/ /, '_')
+  field.gsub(/[\[\]\-\s]/, '').gsub(/  +/, ' ').gsub(/ /, '_').gsub(/\W/, '_')
 end
 
 # Set up variables for file naming and writing batches
@@ -54,14 +153,15 @@ selected_items.each_with_index do |item, index|
 
     # Add the item text to the metadata hash for the item
     item_metadata["Item_Text"] = item_text
+    item_metadata["CaseName"] = $current_case.name
 
     # Remove punctuation and replace spaces with underscores in header values
     item_metadata = item_metadata.map do |k, v|
-      [k.gsub(/[\[\]\-\s]/, '').gsub(/  +/, ' ').gsub(/ /, '_'), v]
+      [k.gsub(/[\[\]\-\s]/, '').gsub(/  +/, ' ').gsub(/ /, '_').gsub(/\W/, '_'), v]
     end.to_h
 
     # Write the metadata values to the file as JSONL
-    file.puts("{ \"index\" : { \"_index\" : \"" + elasticsearch_index + "\", \"_id\" : \"" + item.get_guid + "\" } }")
+    file.puts("{ \"index\" : { \"_index\" : \"" + elasticsearch_index + $current_case.guid + "\", \"_id\" : \"" + item.get_guid + "\" } }")
     file.puts(JSON.generate(item_metadata))
 
     # Increment batch record count and provide feedback on progress
@@ -90,7 +190,7 @@ puts "Export of JSONLines complete into #{output_directory}"
 # Load the JSONL files into Elasticsearch
 Dir[File.join(output_directory, '*.jsonl')].sort.each do |file_path|
   puts "Loading #{file_path}"
-  request_url = "#{elasticsearch_url}/_bulk"
+  request_url = "#{elasticsearch_url}/_bulk?pipeline=nuix_case_metadata_v1"
   request_uri = URI.parse(request_url)
   request = Net::HTTP::Post.new(request_uri)
   request.basic_auth(username, password) unless username == 'noauth'

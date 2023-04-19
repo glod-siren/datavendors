@@ -1,0 +1,270 @@
+{
+    "description": "pipeline for nuix case metadata",
+    "processors": [
+        {
+            "script": {
+                "lang": "painless",
+                "source": "           void iterateAllFields(def x) {\n             if (x instanceof List) {\n               for (def v: x) {\n                 iterateAllFields(v);\n               }\n             }\n             if (!(x instanceof Map)) {\n               return;\n             }\n             x.entrySet().removeIf(e -> e.getValue() == \"\");\n             x.entrySet().removeIf(e -> e.getValue() == null);\n             x.entrySet().removeIf(e -> e.getValue() == 0);\n             for (def v: x.values()) {\n               iterateAllFields(v);\n             }\n           }\n\n           iterateAllFields(ctx);"
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaFilePath",
+                "target_field": "MetaFilePathTree",
+                "pattern": "/",
+                "replacement": "|",
+                "ignore_failure": true
+            }
+        },
+        {
+            "gsub": {
+                "field": "geo_location",
+                "pattern": "; ",
+                "replacement": ",",
+                "ignore_failure": true
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaFileSize",
+                "pattern": ",",
+                "replacement": "",
+                "ignore_failure": true
+            }
+        },
+        {
+            "convert": {
+                "field": "MetaFileSize",
+                "type": "long",
+                "ignore_failure": true
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaOfficeExceptionsNotesCount",
+                "pattern": ",",
+                "replacement": "",
+                "ignore_failure": true
+            }
+        },
+        {
+            "convert": {
+                "field": "MetaOfficeExceptionsNotesCount",
+                "type": "long",
+                "ignore_failure": true
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaWordPdfImagePageCount",
+                "pattern": ",",
+                "replacement": "",
+                "ignore_failure": true
+            }
+        },
+        {
+            "convert": {
+                "field": "MetaWordPdfImagePageCount",
+                "type": "long",
+                "ignore_failure": true
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaRevisionNumber",
+                "pattern": ",",
+                "replacement": "",
+                "ignore_failure": true
+            }
+        },
+        {
+            "convert": {
+                "field": "MetaRevisionNumber",
+                "type": "long",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_email",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "PeopleTo",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "PeopleFrom",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "PeopleCC",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "PeopleBCC",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_personalidnum",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_url",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_phone",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Tags",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_ipaddress",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_money",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_person",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "ItemSets",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_company",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_creditcardnum",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "DocumentIds",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_country",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "NearDuplicateGuids",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "MetaOfficeExceptions",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "MetaProcessingExceptions",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "MetaAppmtRequiredAttendees",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "MetaAppmtOptionalAttendees",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "Entity_phonenumber",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "ItemSetsAsOriginal",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "ItemSetsAsDuplicate",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        },
+        {
+            "split": {
+                "field": "MetaMapiMessageFlags",
+                "separator": "; ",
+                "ignore_failure": true
+            }
+        }
+    ]
+}

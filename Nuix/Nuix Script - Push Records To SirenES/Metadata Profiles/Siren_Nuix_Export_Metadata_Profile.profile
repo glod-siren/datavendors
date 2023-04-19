@@ -16,13 +16,13 @@
     <metadata type="DERIVED" name="People - CC">
       <metadata type="SPECIAL" name="Cc" />
     </metadata>
-    <metadata type="DERIVED" name="Document Date" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="Document Date" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <metadata type="SPECIAL" name="Item Date" />
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Accessed" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Accessed" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <metadata type="PROPERTY" name="File Accessed" />
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Appmt Start" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Appmt Start" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="Mapi-Cal-Start-Time" />
         <metadata type="PROPERTY" name="STARTDATETIME" />
@@ -32,7 +32,7 @@
         <metadata type="PROPERTY" name="Mapi-Start-Date" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Appmt End" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Appmt End" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="Mapi-Cal-End-Time" />
         <metadata type="PROPERTY" name="EndDateTime" />
@@ -42,14 +42,14 @@
         <metadata type="PROPERTY" name="Mapi-End-Date" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Created" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Created" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="File Created" />
         <metadata type="PROPERTY" name="Created" />
         <metadata type="PROPERTY" name="Notes Created" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Modified" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Modified" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="File Modified" />
         <metadata type="PROPERTY" name="PDF Modified Date" />
@@ -57,26 +57,26 @@
         <metadata type="PROPERTY" name="Notes Modified" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Received" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Received" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="Mapi-Message-Delivery-Time" />
         <metadata type="PROPERTY" name="DeliveredDate" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Sent" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Sent" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="Mapi-Client-Submit-Time" />
         <metadata type="PROPERTY" name="PostedDate" />
         <metadata type="PROPERTY" name="DeliveredDate" />
       </first-non-blank>
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Date Top Family" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Date Top Family" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <metadata type="SPECIAL" name="Top Level Item Date" />
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Printed" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Printed" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <metadata type="PROPERTY" name="Last Printed" />
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Saved" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Saved" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <first-non-blank>
         <metadata type="PROPERTY" name="Last Saved" />
         <metadata type="PROPERTY" name="PDF Modified Date" />
@@ -224,7 +224,7 @@ item.getFileSize()]]></script>
     <metadata type="DERIVED" name="[Meta] Office Property - Company">
       <metadata type="PROPERTY" name="Company" />
     </metadata>
-    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Printed Time" customDateFormat="yyyy-MM-dd  HH:mm:ss">
+    <metadata type="DERIVED" name="[Meta] Office Property - Date Last Printed Time" customDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ">
       <metadata type="PROPERTY" name="Last Printed" />
     </metadata>
     <metadata type="DERIVED" name="[Meta] Office Property - Last Author Saved By">
