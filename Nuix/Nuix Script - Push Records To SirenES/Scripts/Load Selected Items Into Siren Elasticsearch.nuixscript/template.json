@@ -7,12 +7,57 @@
         "settings": {
             "number_of_shards": 1,
             "number_of_replicas": 0,
-            "analysis": {}
+            "analysis": {
+                "analyzer": {
+                    "custom_taxonomy_analyzer": {
+                        "tokenizer": "custom_taxonomy_tokenizer"
+                    }
+                },
+                "tokenizer": {
+                    "custom_taxonomy_tokenizer": {
+                        "type": "path_hierarchy",
+                        "delimiter": "|"
+                    }
+                }
+            }
         },
         "mappings": {
             "properties": {
                 "geo_location": {
                     "type": "geo_point"
+                },
+                "MetaFilePathTree": {
+                    "fields": {
+                        "tree": {
+                            "search_analyzer": "keyword",
+                            "fielddata": true,
+                            "analyzer": "custom_taxonomy_analyzer",
+                            "type": "text"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "KindTypeTree": {
+                    "fields": {
+                        "tree": {
+                            "search_analyzer": "keyword",
+                            "fielddata": true,
+                            "analyzer": "custom_taxonomy_analyzer",
+                            "type": "text"
+                        }
+                    },
+                    "type": "keyword"
+                },
+                "CustodianTree": {
+                    "fields": {
+                        "tree": {
+                            "search_analyzer": "keyword",
+                            "fielddata": true,
+                            "analyzer": "custom_taxonomy_analyzer",
+                            "type": "text"
+                        }
+                    },
+                    "type": "keyword"
                 }
             }
         }

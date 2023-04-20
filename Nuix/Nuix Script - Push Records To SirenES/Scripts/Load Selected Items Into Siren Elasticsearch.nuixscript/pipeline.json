@@ -4,16 +4,36 @@
         {
             "script": {
                 "lang": "painless",
-                "source": "           void iterateAllFields(def x) {\n             if (x instanceof List) {\n               for (def v: x) {\n                 iterateAllFields(v);\n               }\n             }\n             if (!(x instanceof Map)) {\n               return;\n             }\n             x.entrySet().removeIf(e -> e.getValue() == \"\");\n             x.entrySet().removeIf(e -> e.getValue() == null);\n             x.entrySet().removeIf(e -> e.getValue() == 0);\n             for (def v: x.values()) {\n               iterateAllFields(v);\n             }\n           }\n\n           iterateAllFields(ctx);"
+                "source": "           void iterateAllFields(def x) {\n             if (x instanceof List) {\n               for (def v: x) {\n                 iterateAllFields(v);\n               }\n             }\n             if (!(x instanceof Map)) {\n               return;\n             }\n             x.entrySet().removeIf(e -> e.getValue() == \"\");\n             x.entrySet().removeIf(e -> e.getValue() == null);\n             x.entrySet().removeIf(e -> e.getValue() == 0);\n             for (def v: x.values()) {\n               iterateAllFields(v);\n             }\n           }\n\n           iterateAllFields(ctx);",
+                "ignore_failure": true
+            }
+        },
+        {
+            "set": {
+                "field": "MetaFilePathTree",
+                "value": "|All Cases|{{{CaseName}}}|{{{MetaFilePath}}}",
+                "ignore_failure": true
             }
         },
         {
             "gsub": {
-                "field": "MetaFilePath",
-                "target_field": "MetaFilePathTree",
+                "field": "MetaFilePathTree",
                 "pattern": "/",
                 "replacement": "|",
                 "ignore_failure": true
+            }
+        },
+        {
+            "set": {
+                "field": "CustodianTree",
+                "value": "|All Cases|{{{CaseName}}}|{{{Custodian}}}",
+                "ignore_failure": true
+            }
+        },
+        {
+            "set": {
+                "field": "KindTypeTree",
+                "value": "|All File Types|{{{MetaDocumentKind}}}|{{{MetaFileApplication}}}"
             }
         },
         {
@@ -143,7 +163,7 @@
         {
             "split": {
                 "field": "Tags",
-                "separator": "; ",
+                "separator": ", ",
                 "ignore_failure": true
             }
         },
@@ -264,6 +284,213 @@
                 "field": "MetaMapiMessageFlags",
                 "separator": "; ",
                 "ignore_failure": true
+            }
+        },
+        {
+            "siren-nlp": {
+                "target_field": "nlp",
+                "fields": [
+                    "MetaFileName",
+                    "Item_Text"
+                ],
+                "ignore_failure": true,
+                "processors": [
+                    {
+                        "class": "Url",
+                        "settings": {
+                            "lenient": "false"
+                        }
+                    },
+                    {
+                        "class": "Email"
+                    },
+                    {
+                        "class": "Telephone"
+                    },
+                    {
+                        "class": "USTelephone"
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "ipv6Regex",
+                        "settings": {
+                            "pattern": "[a-fA-F\\d]{0,4}(?::[a-fA-F\\d]{0,4}){7}|(?:[a-fA-F\\d]{0,4}:){1,7}(?::[a-fA-F\\d]{0,4}){1,7}|(?<![\\w:.])[a-fA-F\\d]{1,4}(?::[a-fA-F\\d]{1,4}){7}(?![\\w:.])",
+                            "caseInsensitive": true,
+                            "type": "entity/ipv6"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "cryptoRegex",
+                        "settings": {
+                            "pattern": "(?i)\\b(0x)?[a-f\\d]{40}\\b|\\b(bc1|[13])[a-zA-Z\\d]{25,39}\\b",
+                            "caseInsensitive": true,
+                            "type": "entity/crypto"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "domainRegex",
+                        "settings": {
+                            "pattern": "(?i)\\b(?:https?://)?(?:www\\.)?([\\w-]+\\.[a-zA-Z]{2,63})\\b",
+                            "caseInsensitive": true,
+                            "type": "entity/domain"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "idnumRegex",
+                        "settings": {
+                            "pattern": "(?i)\\b([A-Z]{2}\\d{2}-\\d{2}-\\d{4}|\\d{9}|\\d{8}[A-Z]|\\d{7}[A-Z]{2})\\b",
+                            "caseInsensitive": true,
+                            "type": "entity/idnum"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 1",
+                        "settings": {
+                            "pattern": "\\b(?:Shot[\\S\\-.]{0,1}grouping|gun|guns|shot[\\S\\-.]{0,1}fired|shots[\\S\\-.]{0,1}fired|shooting|shootings|bullet|bullets|Shot[\\S\\-.]{0,1}timer|Sighting[\\S\\-.]{0,1}in|Sin[\\S\\-.]{0,1}bater[ií]a|Sistema[\\S\\-.]{0,1}de[\\S\\-.]{0,1}imprimaci[oó]n[\\S\\-.]{0,1}de[\\S\\-.]{0,1}granulos[\\S\\-.]{0,1}Lawrence|Slamfire|Smoothbore)\\b",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 2",
+                        "settings": {
+                            "pattern": "\\b(?:4[\\S\\-.]{0,1}agujeros|4[\\S\\-.]{0,1}bore|Accurizing|Agrupaci[oó]n[\\S\\-.]{0,1}de[\\S\\-.]{0,1}tomas|Ahogo|Atado|Avistamiento[\\S\\-.]{0,1}en|Bang[\\S\\-.]{0,1}stick|Barrel[\\S\\-.]{0,1}threads|Blaster|Blicky|Blow[\\S\\-.]{0,1}forward|Blowback|Bolt[\\S\\-.]{0,1}thrust|Boom[\\S\\-.]{0,1}Stick)\\b",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 3",
+                        "settings": {
+                            "pattern": "(\\b|^)Completamente|Comprobaci[óo]n[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}gasolina|Contact[\\S\\-\\.]{0,1}shot|Corte[\\S\\-\\.]{0,1}por[\\S\\-\\.]{0,1}llama|Cosmolina|Cosmoline|Cron[óo]grafo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}pistola|Cuarenta[\\S\\-\\.]{0,1}y[\\S\\-\\.]{0,1}cinco|Delayed[\\S\\-\\.]{0,1}blowback|Dry[\\S\\-\\.]{0,1}fire|Eje[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}perforaci[óo]n|Empuje[\\S\\-\\.]{0,1}del[\\S\\-\\.]{0,1}perno|Estilo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}la[\\S\\-\\.]{0,1}jungla|Explosi[óo]n[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}boca|Extracci[óo]n[\\S\\-\\.]{0,1}primaria(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 4",
+                        "settings": {
+                            "pattern": "(\\b|^)Maynard[\\S\\-\\.]{0,1}tape[\\S\\-\\.]{0,1}primer|Miller[\\S\\-\\.]{0,1}twist[\\S\\-\\.]{0,1}rule|Muzzle[\\S\\-\\.]{0,1}blast|Muzzle[\\S\\-\\.]{0,1}flash|Muzzle[\\S\\-\\.]{0,1}rise|Mu[ñn]equera[\\S\\-\\.]{0,1}fl[áa]cida|Nina[\\S\\-\\.]{0,1}Ross|N[úu]mero[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}serie[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}la[\\S\\-\\.]{0,1}pistola|Obturaci[óo]n|Obturation|Out[\\S\\-\\.]{0,1}of[\\S\\-\\.]{0,1}battery|Overbore|Palo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}explosi[óo]n|Palo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}tibur[óo]n|Patch[\\S\\-\\.]{0,1}box[\\S\\-\\.]{0,1}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 5",
+                        "settings": {
+                            "pattern": "(\\b|^)Pocket[\\S\\-\\.]{0,1}Rocket|Point[\\S\\-\\.]{0,1}Blank|Point[\\S\\-\\.]{0,1}blank[\\S\\-\\.]{0,1}range|Powerhead|arma[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}fuego|firearm[a-z\\'\\-]{0,2}|Prangi|Precisi[óo]n|Primary[\\S\\-\\.]{0,1}extraction|Punto[\\S\\-\\.]{0,1}en[\\S\\-\\.]{0,1}blanco|Quemarropa|Recoil|Regla[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}giro[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}Miller|Retroceso[\\S\\-\\.]{0,1}retardado|Rev[óo]lver(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 6",
+                        "settings": {
+                            "pattern": "(\\b|^)Roscoe|Sabot[\\S\\-\\.]{0,1}|Semi[\\S\\-\\.]{0,1}automatic[\\S\\-\\.]{0,1}pistol|Semiguada[ñn]ador|Semiwadcutter|Featureless[\\S\\-\\.]{0,1}rifles|Field[\\S\\-\\.]{0,1}strip|Fire[\\S\\-\\.]{0,1}Stick|Firearm[\\S\\-\\.]{0,1}modification|Fireball|Flame[\\S\\-\\.]{0,1}cutting|Fogonazo|Forty[\\S\\-\\.]{0,1}Five|FortyFive|Free[\\S\\-\\.]{0,1}recoil(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 7",
+                        "settings": {
+                            "pattern": "(\\b|^)Garrucha|Gas[\\S\\-\\.]{0,1}check|Ghost[\\S\\-\\.]{0,1}Load|Gun[\\S\\-\\.]{0,1}chronograph|Gun[\\S\\-\\.]{0,1}registry|Gun[\\S\\-\\.]{0,1}serial[\\S\\-\\.]{0,1}number|Half[\\S\\-\\.]{0,1}cock|Hang[\\S\\-\\.]{0,1}fire|Herramientas|Hilos[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}barril|Hocico[\\S\\-\\.]{0,1}levantado|Imprimador[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}cinta[\\S\\-\\.]{0,1}Maynard|Inclinaci[óo]n[\\S\\-\\.]{0,1}del[\\S\\-\\.]{0,1}portador|Jammie|Jungle[\\S\\-\\.]{0,1}style(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 8",
+                        "settings": {
+                            "pattern": "(\\b|^)Laser[\\S\\-\\.]{0,1}sight|Lawrence[\\S\\-\\.]{0,1}Pellet[\\S\\-\\.]{0,1}Primer[\\S\\-\\.]{0,1}System|Limp[\\S\\-\\.]{0,1}wristing|Locked[\\S\\-\\.]{0,1}breech|Long[\\S\\-\\.]{0,1}gun|L[úu]]para|Mac[\\S\\-\\.]{0,1}10|Boomstick|Bore[\\S\\-\\.]{0,1}axis|Breech[\\S\\-\\.]{0,1}loading|Bullpup|Caja[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}parches|Calentador|Cannon|Carga[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}cebo(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 9",
+                        "settings": {
+                            "pattern": "(\\b|^)Carga[\\S\\-\\.]{0,1}fantasma|Cargador[\\S\\-\\.]{0,1}r[áa]pido|Carrier[\\S\\-\\.]{0,1}tilt|Ca[ñn][óo]n|Cohete[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}bolsillo|Soplar[\\S\\-\\.]{0,1}hacia[\\S\\-\\.]{0,1}adelante|Speedloader|Squib[\\S\\-\\.]{0,1}load|Strapped|Tap,[\\S\\-\\.]{0,1}rack,[\\S\\-\\.]{0,1}bang|Through[\\S\\-\\.]{0,1}and[\\S\\-\\.]{0,1}through|Tirador|Tooli|Toque,[\\S\\-\\.]{0,1}estante,[\\S\\-\\.]{0,1}explosi[óo]n|Visi[óo]n[\\S\\-\\.]{0,1}Laser(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 10",
+                        "settings": {
+                            "pattern": "(\\b|^)Wadcutter|arma[\\S\\-\\.]{0,1}larga|blaster|bola[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}fuego|bullpup|carga[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}nalgas|colgar[\\S\\-\\.]{0,1}fuego|disparo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}contacto|fuego[\\S\\-\\.]{0,1}seco|media[\\S\\-\\.]{0,1}polla|modificaci[óo]n[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}armas[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}fuego|nina[\\S\\-\\.]{0,1}ross|palo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}auge|palo[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}fuego|pistola[\\S\\-\\.]{0,1}semiautom[áa]tica(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Gun Terms 11",
+                        "settings": {
+                            "pattern": "(\\b|^)rec[áa]mara[\\S\\-\\.]{0,1}bloqueada|registro[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}armas|retroceso[\\S\\-\\.]{0,1}libre|rifles[\\S\\-\\.]{0,1}sin[\\S\\-\\.]{0,1}rasgos[\\S\\-\\.]{0,1}distintivos|sobredimensionar|temporizador[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}tiro|tira[\\S\\-\\.]{0,1}de[\\S\\-\\.]{0,1}campo|wadcutter|[áa]nima[\\S\\-\\.]{0,1}lisa(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/firearm"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Drug terms 1",
+                        "settings": {
+                            "pattern": "(\\b|^)alprazolam[a-z\\'\\-]{0,2}|amphetamine[a-z\\'\\-]{0,2}|anfetamina[a-z\\'\\-]{0,2}|catinonas[a-z\\'\\-]{0,2}|clonazepam[a-z\\'\\-]{0,2}|cocaine[a-z\\'\\-]{0,2}|cocaína[a-z\\'\\-]{0,2}|codeine[a-z\\'\\-]{0,2}|codeína[a-z\\'\\-]{0,2}|crack[a-z\\'\\-]{0,2}cocaine[a-z\\'\\-]{0,2}|fentan[a-z\\'\\-]{0,2}l[a-z\\'\\-]{0,2}|heroin[a-z\\'\\-]{0,2}|heroína[a-z\\'\\-]{0,2}|hongos[a-z\\'\\-]{0,2}|hydrocodone[a-z\\'\\-]{0,2}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/drugs"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Drug terms 2",
+                        "settings": {
+                            "pattern": "(\\b|^)xanax[a-z\\'\\-]{0,2}|alprazolam[a-z\\'\\-]{0,2}|fentanilo[a-z\\'\\-]{0,2}|hidrocodona[a-z\\'\\-]{0,2}|metanfetamina[a-z\\'\\-]{0,2}|naloxone[a-z\\'\\-]{0,2}|ox[a-z\\'\\-]{0,2}codo[a-z\\'\\-]{0,2}|percocet[a-z\\'\\-]{0,2}|prometazina[a-z\\'\\-]{0,2}|drug[a-z\\'\\-]{0,2}|paraphernalia[a-z\\'\\-]{0,2}|overdose[a-z\\'\\-]{0,2}|dosed[a-z\\'\\-]{0,2}|narcan[a-z\\'\\-]{0,2}|opioid[a-z\\'\\-]{0,2}|narcotic[a-z\\'\\-]{0,2}|stimulant[a-z\\'\\-]{0,2}|cannabi[a-z\\'\\-]{0,2}|alcohol[a-z\\'\\-]{0,2}|depres[a-z\\'\\-]{0,2}ant[a-z\\'\\-]{0,2}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/drugs"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Drug terms 3",
+                        "settings": {
+                            "pattern": "(\\b|^)ketamina[a-z\\'\\-]{0,2}|ketamine[a-z\\'\\-]{0,2}|klonop[a-z\\'\\-]{0,2}n[a-z\\'\\-]{0,2}|lsd|mdma|marijuana[a-z\\'\\-]{0,2}|methamphetamine[a-z\\'\\-]{0,2}|mushrooms[a-z\\'\\-]{0,2}|opio[a-z\\'\\-]{0,2}|opium[a-z\\'\\-]{0,2}|ox[a-z\\'\\-]{0,2}codon[a-z\\'\\-]{0,2}|pcp|percocet[a-z\\'\\-]{0,2}|peyote[a-z\\'\\-]{0,2}|promethazine[a-z\\'\\-]{0,2}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/drugs"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Drug terms 4",
+                        "settings": {
+                            "pattern": "(\\b|^)rit[a-z\\'\\-]{0,2}lin[a-z\\'\\-]{0,2}|cannabinoid[a-z\\'\\-]{0,2}|cathinone[a-z\\'\\-]{0,2}|xanax[a-z\\'\\-]{0,2}|alprazolam[a-z\\'\\-]{0,2}|fentanilo[a-z\\'\\-]{0,2}|hidrocodona[a-z\\'\\-]{0,2}|metanfetamina[a-z\\'\\-]{0,2}|naloxone[a-z\\'\\-]{0,2}|ox[a-z\\'\\-]{0,2}codo[a-z\\'\\-]{0,2}|percocet[a-z\\'\\-]{0,2}|prometazina[a-z\\'\\-]{0,2}|drug[a-z\\'\\-]{0,2}|paraphernalia[a-z\\'\\-]{0,2}|overdose[a-z\\'\\-]{0,2}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/drugs"
+                        }
+                    },
+                    {
+                        "class": "CustomRegex",
+                        "description": "Drug terms 5",
+                        "settings": {
+                            "pattern": "(\\b|^)dosed[a-z\\'\\-]{0,2}|narcan[a-z\\'\\-]{0,2}|opioid[a-z\\'\\-]{0,2}|narcotic[a-z\\'\\-]{0,2}|stimulant[a-z\\'\\-]{0,2}|cannabi[a-z\\'\\-]{0,2}|alcohol[a-z\\'\\-]{0,2}|depres[a-z\\'\\-]{0,2}ant[a-z\\'\\-]{0,2}(\\b|$)",
+                            "caseInsensitive": true,
+                            "type": "keywords/drugs"
+                        }
+                    }
+                ]
             }
         }
     ]
