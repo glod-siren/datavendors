@@ -242,7 +242,7 @@ item.getFileSize()]]></script>
     <metadata type="DERIVED" name="[Meta] SHA-256">
       <metadata type="SPECIAL" name="SHA-256 Digest" />
     </metadata>
-    <metadata type="DERIVED" name="[RT] MD5 Hash">
+    <metadata type="DERIVED" name="MD5 Hash">
       <metadata type="SPECIAL" name="MD5 Digest" />
     </metadata>
     <metadata type="DERIVED" name="[Meta] Subject">
@@ -276,7 +276,7 @@ rtOfficeExceptionsArr << "Track Changes" if props["Contains Track Changes"] || p
 return rtOfficeExceptionsArr.join(";")]]></script>
       </scripted-expression>
     </metadata>
-    <metadata type="DERIVED" name="[RT] File Exception">
+    <metadata type="DERIVED" name="[Nuix] File Exception">
       <first-non-blank>
         <metadata type="PROPERTY" name="FailureDetail" />
         <metadata type="PROPERTY" name="FailureMessage" />
@@ -352,5 +352,21 @@ return rtProcExceptionsArr.join(";")]]></script>
       </first-non-blank>
     </metadata>
     <metadata type="SPECIAL" name="Audited" />
+    <metadata type="PROPERTY" name="File Group" />
+    <metadata type="PROPERTY" name="File Group SID" />
+    <metadata type="PROPERTY" name="File Owner" />
+    <metadata type="PROPERTY" name="File Owner SID" />
+    <metadata type="SPECIAL" name="AutomaticClassifications" />
+    <metadata type="SPECIAL" name="AutomaticClassifierConfidence" />
+    <metadata type="SPECIAL" name="AutomaticClassifierGainConfidence" />
+    <metadata type="SPECIAL" name="flag.inline" />
+    <metadata type="SPECIAL" name="PhotoDNA Robust Hash" />
+    <metadata type="SPECIAL" name="PDF Generation Method" />
+    <metadata type="SPECIAL" name="PDF Page Count" />
+    <metadata type="SPECIAL" name="Printed Image Path" />
+    <metadata type="SPECIAL" name="SkinTone" />
+    <metadata type="SPECIAL" name="flag.slack_space" />
+    <metadata type="SPECIAL" name="SSDeep Fuzzy Hash" />
+    <metadata type="SPECIAL" name="ReviewedClassifications" />
   </metadata-list>
 </metadata-profile>

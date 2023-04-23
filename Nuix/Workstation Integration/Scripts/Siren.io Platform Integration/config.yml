@@ -1,0 +1,10 @@
+elasticsearch_url: "http://localhost:9200"
+elasticsearch_metadata_index: "nuix_case_metadata_"
+elasticsearch_print_index: "nuix_case_print_"
+username: "noauth"
+password: "noauth"
+metadata_profile_name: "Siren_Nuix_Export_Metadata_Profile"
+temp_directory: "/Users/philipglod/Library/Nuix"
+catch_count: 10
+print_preview: true
+print_preview_page_limit: 5

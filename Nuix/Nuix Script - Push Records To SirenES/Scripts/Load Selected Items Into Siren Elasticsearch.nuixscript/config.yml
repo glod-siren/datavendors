@@ -1,7 +1,0 @@
-elasticsearch_url: "http://babayaga11.local:9220"
-elasticsearch_index: "nuix_case_metadata_"
-username: "noauth"
-password: "noauth"
-metadata_profile_name: "Siren_Nuix_Export_Metadata_Profile"
-temp_directory: "C:/Users/du/AppData/Roaming/Nuix"
-catch_count: 500
