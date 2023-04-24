@@ -1,7 +1,7 @@
 # Nuix Workstation Siren.io Platform Integration
 
-![Siren.io](https://siren.io/wp-content/uploads/img-siren-logo-thumbnail.png)
-![Nuix.io](https://www.nuix.com/themes/custom/bootstrap5/assets/images/logo-blue.svg)
+- ![Siren.io](https://siren.io/wp-content/uploads/Siren-small_V1.1.png)
+- ![Nuix.io](https://www.nuix.com/themes/custom/bootstrap5/assets/images/logo-blue.svg)
 
 **NOTE: This script is still in production and should be used at your own risk.**
 
