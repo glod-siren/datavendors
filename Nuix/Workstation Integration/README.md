@@ -30,21 +30,22 @@ SirenNLP is used to Extract Emails, Cyrpto, URLs, and Phone Numbers, however Nui
 ## Configuration
 
 The following configuration variables need to be set in the script before running:
+_blue denotes settings most users will adjust to liking_ whereas other settings are more advanced
 
-- `elasticsearch_url`: The URL of the Elasticsearch server
+- _`elasticsearch_url`: The URL of the Elasticsearch server_
 - `elasticsearch_metadata_index`: The prefix name of the Elasticsearch index for the exported metadata, the nuix case guid will be appended to this
 - `elasticsearch_print_index`: The prefix name of the Elasticsearch index for the exported print previews, the nuix caes guid will be appended to this
-- `username`: The username for basic authentication with Elasticsearch (set to 'noauth' if not required)
-- `password`: The password for basic authentication with Elasticsearch (set to 'noauth' if not required)
+- _`username`: The username for basic authentication with Elasticsearch (set to 'noauth' if not required)_
+- _`password`: The password for basic authentication with Elasticsearch (set to 'noauth' if not required)_
 - `metadata_profile`: The metadata profile to use for exporting metadata
-- `temp_directory`: The temp directory to output the JSONL files to before loading to Elasticsearch
-- `catch_count`: The number of records to include in each JSONL batch file
-- `print_preview`: Whether or not to export print previews into binary fields of the print index (set to `true` or `false`)
-- `print_preview_page_limit`: Limit the number of print preview pages to be stored into elasticsearch in binary fields
+- _`temp_directory`: The temp directory to output the JSONL files to before loading to Elasticsearch_
+- _`catch_count`: The number of records to include in each JSONL batch file_
+- _`print_preview`: Whether or not to export print previews into binary fields of the print index (set to `true` or `false`)_
+- _print_preview_page_limit`: Limit the number of print preview pages to be stored into elasticsearch in binary fields_
 - `pipeline_files`: These are the pipeline .json files in the `Load Selected Items Into Siren Elastic.nuixscript` folder that will be applied into Elastic, they will overwrite the existing. These should be ready to go for most users.
 - `primary_pipeline`: This is the pipeline that will be called by the _bulk operation
 - `template_files`: These are the template .json file in the `Load Selected Items Into Siren Elastic.nuixscript` folder that will be applied to Elastic, they will overwrite the existing. These should be ready to go for most users.
-- `max_text_length_bytes`: art
+- _`max_text_length_bytes`: sets the maximum character size the Item_Text should be written to Elasticsearch, this is prevent large records on slow machines, by default its set to 10MB._
 - `print_preview_include_kinds`: these are kinds that will exported print previews of (if exists), by default `["Email", "Calendar", "Contact", "Document", "Presentation", "Spreadsheet", "Multimedia", "Image"]`
 
 print_preview_include_kinds: ["Email", "Calendar", "Contact", "Document", "Presentation", "Spreadsheet", "Multimedia", "Image"]
