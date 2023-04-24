@@ -26,6 +26,7 @@ SirenNLP is used to Extract Emails, Cyrpto, URLs, and Phone Numbers, however Nui
 2. Edit the `config.yml` as specified below
 3. Import the `nuix-siren-saved-objects-yyyy-mm-dd.json` into your Siren Platform
 4. Import the Siren Created Nuix Metadata Profile `Siren_Nuix_Export_Metadata_Profile.profile` into Nuix
+5. Import the `nuix.zip` IconPack into Siren Platform
 
 ## Configuration
 

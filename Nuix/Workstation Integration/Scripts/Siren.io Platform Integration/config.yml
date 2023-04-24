@@ -9,7 +9,7 @@ template_files: ["nuix_case_metadata_template_v1.json", "nuix_case_print_templat
 metadata_profile_name: "Siren_Nuix_Export_Metadata_Profile"
 temp_directory: "/Users/philipglod/Library/Nuix"
 max_text_length_bytes: 10485760
-catch_count: 1000
+catch_count: 50
 print_preview: true
 print_preview_page_limit: 5
 print_preview_include_kinds: ["Email", "Calendar", "Contact", "Document", "Presentation", "Spreadsheet", "Multimedia", "Image"]
