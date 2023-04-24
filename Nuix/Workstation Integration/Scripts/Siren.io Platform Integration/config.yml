@@ -3,8 +3,13 @@ elasticsearch_metadata_index: "nuix_case_metadata_"
 elasticsearch_print_index: "nuix_case_print_"
 username: "noauth"
 password: "noauth"
+pipeline_files: ["nuix_case_metadata_pipeline_v1.json","nuix_case_ner_extraction_v1.json"]
+primary_pipeline: "nuix_case_metadata_pipeline_v1"
+template_files: ["nuix_case_metadata_template_v1.json", "nuix_case_print_template_v1.json"]
 metadata_profile_name: "Siren_Nuix_Export_Metadata_Profile"
 temp_directory: "/Users/philipglod/Library/Nuix"
-catch_count: 10
+max_text_length_bytes: 10485760
+catch_count: 1000
 print_preview: true
 print_preview_page_limit: 5
+print_preview_include_kinds: ["Email", "Calendar", "Contact", "Document", "Presentation", "Spreadsheet", "Multimedia", "Image"]

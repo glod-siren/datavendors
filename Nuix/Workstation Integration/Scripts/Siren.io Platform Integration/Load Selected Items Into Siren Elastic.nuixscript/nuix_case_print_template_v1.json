@@ -1,0 +1,33 @@
+{
+    "index_patterns": [
+        "nuix_case_print_*"
+    ],
+    "priority": 0,
+    "template": {
+        "settings": {
+            "number_of_shards": 1,
+            "number_of_replicas": 0,
+            "index.highlight.max_analyzed_offset": 1000000000,
+            "index.store.preload": [
+                "nvd",
+                "dvd",
+                "tim",
+                "doc",
+                "dim"
+            ],
+            "index.requests.cache.enable": false
+        },
+        "mappings": {
+            "properties": {
+                "PrintPreview_Encoded": {
+                    "type": "binary",
+                    "doc_values": true,
+                    "store": true
+                },
+                "PageNumber": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

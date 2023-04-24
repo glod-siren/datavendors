@@ -9,10 +9,50 @@
             }
         },
         {
+            "pipeline": {
+                "name": "nuix_case_ner_extraction_v1",
+                "ignore_failure": true
+            }
+        },
+        {
+            "convert": {
+                "field": "Latitude",
+                "type": "double",
+                "ignore_failure": true,
+                "if": "ctx.Latitude != null"
+            }
+        },
+        {
+            "convert": {
+                "field": "Longitude",
+                "type": "double",
+                "ignore_failure": true,
+                "if": "ctx.Longitude != null"
+            }
+        },
+        {
+            "set": {
+                "field": "geo_location",
+                "value": "{{{Latitude}}},{{{Longitude}}}",
+                "ignore_failure": true,
+                "if": "ctx.Latitude != null && ctx.Longitude != null"
+            }
+        },
+        {
             "set": {
                 "field": "MetaFilePathTree",
                 "value": "|All Cases|{{{CaseName}}}|{{{MetaFilePath}}}",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.CaseName != null && ctx.MetaFilePath != null"
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaFilePathTree",
+                "pattern": "//",
+                "replacement": "/",
+                "ignore_failure": true,
+                "if": "ctx.MetaFilePath != null"
             }
         },
         {
@@ -20,20 +60,33 @@
                 "field": "MetaFilePathTree",
                 "pattern": "/",
                 "replacement": "|",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaFilePath != null"
+            }
+        },
+        {
+            "gsub": {
+                "field": "MetaFilePathTree",
+                "pattern": "\\|\\|",
+                "replacement": "|",
+                "ignore_failure": true,
+                "if": "ctx.MetaFilePath != null"
             }
         },
         {
             "set": {
                 "field": "CustodianTree",
                 "value": "|All Cases|{{{CaseName}}}|{{{Custodian}}}",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.CaseName != null && ctx.Custodian != null"
             }
         },
         {
             "set": {
                 "field": "KindTypeTree",
-                "value": "|All File Types|{{{MetaDocumentKind}}}|{{{MetaFileApplication}}}"
+                "value": "|All File Types|{{{MetaDocumentKind}}}|{{{MetaFileApplication}}}",
+                "ignore_failure": true,
+                "if": "ctx.MetaDocumentKind != null && ctx.MetaFileApplication != null"
             }
         },
         {
@@ -41,7 +94,8 @@
                 "field": "geo_location",
                 "pattern": "; ",
                 "replacement": ",",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.geo_location != null"
             }
         },
         {
@@ -49,14 +103,16 @@
                 "field": "MetaFileSize",
                 "pattern": ",",
                 "replacement": "",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaFileSize != null"
             }
         },
         {
             "convert": {
                 "field": "MetaFileSize",
                 "type": "long",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaFileSize != null"
             }
         },
         {
@@ -64,14 +120,16 @@
                 "field": "MetaOfficeExceptionsNotesCount",
                 "pattern": ",",
                 "replacement": "",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaOfficeExceptionsNotesCount != null"
             }
         },
         {
             "convert": {
                 "field": "MetaOfficeExceptionsNotesCount",
                 "type": "long",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaOfficeExceptionsNotesCount != null"
             }
         },
         {
@@ -79,14 +137,16 @@
                 "field": "MetaWordPdfImagePageCount",
                 "pattern": ",",
                 "replacement": "",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaWordPdfImagePageCount != null"
             }
         },
         {
             "convert": {
                 "field": "MetaWordPdfImagePageCount",
                 "type": "long",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaWordPdfImagePageCount != null"
             }
         },
         {
@@ -94,196 +154,224 @@
                 "field": "MetaRevisionNumber",
                 "pattern": ",",
                 "replacement": "",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaRevisionNumber != null"
             }
         },
         {
             "convert": {
                 "field": "MetaRevisionNumber",
                 "type": "long",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaRevisionNumber != null"
             }
         },
         {
             "split": {
                 "field": "Entity_email",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_email != null"
             }
         },
         {
             "split": {
                 "field": "PeopleTo",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.PeopleTo != null"
             }
         },
         {
             "split": {
                 "field": "PeopleFrom",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.PeopleFrom != null"
             }
         },
         {
             "split": {
                 "field": "PeopleCC",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.PeopleCC != null"
             }
         },
         {
             "split": {
                 "field": "PeopleBCC",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.PeopleBCC != null"
             }
         },
         {
             "split": {
                 "field": "Entity_personalidnum",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_personalidnum != null"
             }
         },
         {
             "split": {
                 "field": "Entity_url",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_url != null"
             }
         },
         {
             "split": {
                 "field": "Entity_phone",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_phone != null"
             }
         },
         {
             "split": {
                 "field": "Tags",
                 "separator": ", ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Tags != null"
             }
         },
         {
             "split": {
                 "field": "Entity_ipaddress",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_ipaddress != null"
             }
         },
         {
             "split": {
                 "field": "Entity_money",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_money != null"
             }
         },
         {
             "split": {
                 "field": "Entity_person",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_person != null"
             }
         },
         {
             "split": {
                 "field": "ItemSets",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.ItemSets != null"
             }
         },
         {
             "split": {
                 "field": "Entity_company",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_company != null"
             }
         },
         {
             "split": {
                 "field": "Entity_creditcardnum",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_creditcardnum != null"
             }
         },
         {
             "split": {
                 "field": "DocumentIds",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.DocumentIds != null"
             }
         },
         {
             "split": {
                 "field": "Entity_country",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_country != null"
             }
         },
         {
             "split": {
                 "field": "NearDuplicateGuids",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.NearDuplicateGuids != null"
             }
         },
         {
             "split": {
                 "field": "MetaOfficeExceptions",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaOfficeExceptions != null"
             }
         },
         {
             "split": {
                 "field": "MetaProcessingExceptions",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaProcessingExceptions != null"
             }
         },
         {
             "split": {
                 "field": "MetaAppmtRequiredAttendees",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaAppmtRequiredAttendees != null"
             }
         },
         {
             "split": {
                 "field": "MetaAppmtOptionalAttendees",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaAppmtOptionalAttendees != null"
             }
         },
         {
             "split": {
                 "field": "Entity_phonenumber",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.Entity_phonenumber != null"
             }
         },
         {
             "split": {
                 "field": "ItemSetsAsOriginal",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.ItemSetsAsOriginal != null"
             }
         },
         {
             "split": {
                 "field": "ItemSetsAsDuplicate",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.ItemSetsAsDuplicate != null"
             }
         },
         {
             "split": {
                 "field": "MetaMapiMessageFlags",
                 "separator": "; ",
-                "ignore_failure": true
+                "ignore_failure": true,
+                "if": "ctx.MetaMapiMessageFlags != null"
             }
         }
     ]

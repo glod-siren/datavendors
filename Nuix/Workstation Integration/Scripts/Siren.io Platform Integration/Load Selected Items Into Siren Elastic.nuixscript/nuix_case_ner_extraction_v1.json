@@ -1,0 +1,93 @@
+{
+  "description": "NamedEntityExtractor Runs Prior To All",
+  "processors": [
+    {
+      "siren-nlp": {
+        "target_field": "nlp",
+        "fields": [
+          "MetaFileName",
+          "Item_Text",
+          "PeopleTo",
+          "PeopleFrom",
+          "PeopleCC",
+          "PeopleBCC",
+          "MSISDN",
+          "Description"
+        ],
+        "ignore_failure": true,
+        "processors": [
+          {
+            "class": "CustomRegex",
+            "description": "Custom Pattern For 10 digit pulls This may create false positives but is required for getting MSISDNs on North American Phones 1235555555. Does not perform validation.",
+            "settings": {
+              "pattern": "(\\b|^)\\d{10}(\\b|$)|(\\b|^)1\\d{10}(\\b|$)",
+              "caseInsensitive": true,
+              "type": "entity/phonenumber"
+            }
+          },
+          {
+            "class": "CustomRegex",
+            "description": "Custom Pattern For Non-Standard USTelephone. (555)555-5555. Does not perform validation.",
+            "settings": {
+              "pattern": "(\\b|\\B|^)\\(\\d{3}\\)\\s{0,1}\\d{3}\\W{0,1}\\d{4}(\\b|\\B|$)",
+              "caseInsensitive": true,
+              "type": "entity/phonenumber"
+            }
+          },
+          {
+            "class": "CustomRegex",
+            "description": "Custom Pattern For Non-Standard International Numbers. Does not perform validation.",
+            "settings": {
+              "pattern": "(\\b|\\B|^)\\+(9[976]\\d|8[987530]\\d|6[987]\\d|5[90]\\d|42\\d|3[875]\\d|2[98654321]\\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\\W*\\d\\W*\\d\\W*\\d\\W*\\d\\W*\\d\\W*\\d\\W*\\d\\W*\\d\\W*(\\d{1,2})(\\b|\\B|$)",
+              "caseInsensitive": true,
+              "type": "entity/phonenumber"
+            }
+          },
+          {
+            "class": "Url",
+            "settings": {
+              "lenient": "false"
+            }
+          },
+          {
+            "class": "Email"
+          },
+          {
+            "class": "Telephone"
+          },
+          {
+            "class": "USTelephone"
+          },
+          {
+            "class" : "CustomRegex",
+            "settings" : {
+              "pattern" : "[13][a-km-zA-HJ-NP-Z1-9]{25,34}",
+              "type" : "crypto"
+            }
+          },
+          {
+            "class" : "CustomRegex",
+            "settings" : {
+              "pattern" : "0x[a-fA-F0-9]{40}",
+              "type" : "crypto"
+            }
+          },
+          {
+            "class" : "CustomRegex",
+            "settings" : {
+              "pattern" : "X[1-9A-HJ-NP-Za-km-z]{33}",
+              "type" : "crypto"
+            }
+          },
+          {
+            "class" : "CustomRegex",
+            "settings" : {
+              "pattern" : "4[0-9AB][1-9A-HJ-NP-Za-km-z]{93}",
+              "type" : "crypto"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

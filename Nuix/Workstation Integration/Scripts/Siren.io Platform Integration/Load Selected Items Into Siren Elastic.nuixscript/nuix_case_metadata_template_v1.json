@@ -1,15 +1,20 @@
 {
     "index_patterns": [
-        "nuix_case_metadata_*",
-        "nuix_case_print_*"
+        "nuix_case_metadata_*"
     ],
     "priority": 0,
     "template": {
         "settings": {
             "number_of_shards": 1,
             "number_of_replicas": 0,
-            "index.highlight.max_analyzed_offset" : 1000000000,
-            "index.store.preload": ["nvd", "dvd", "tim", "doc", "dim"],
+            "index.highlight.max_analyzed_offset": 1000000000,
+            "index.store.preload": [
+                "nvd",
+                "dvd",
+                "tim",
+                "doc",
+                "dim"
+            ],
             "index.requests.cache.enable": false,
             "analysis": {
                 "analyzer": {
@@ -28,22 +33,16 @@
         "mappings": {
             "properties": {
                 "geo_location": {
-                    "type": "geo_point"
+                    "type": "geo_point",
+                    "ignore_malformed": true,
+                    "index": true
                 },
                 "Thumbnail_Encoded": {
-                    "type":     "binary",
+                    "type": "binary",
                     "doc_values": true,
                     "store": true
                 },
-                "PrintPreview_Encoded": {
-                    "type":     "binary",
-                    "doc_values": true,
-                    "store": true
-                },
-                "PageNumber": {
-                    "type": "integer"
-                },
-                "Item_Text" : {
+                "Item_Text": {
                     "type": "text",
                     "analyzer": "english"
                 },
@@ -56,7 +55,9 @@
                             "type": "text"
                         }
                     },
-                    "type": "keyword"
+                    "type": "keyword",
+                    "doc_values": true,
+                    "store": true
                 },
                 "KindTypeTree": {
                     "fields": {
@@ -67,7 +68,9 @@
                             "type": "text"
                         }
                     },
-                    "type": "keyword"
+                    "type": "keyword",
+                    "doc_values": true,
+                    "store": true
                 },
                 "CustodianTree": {
                     "fields": {
@@ -78,7 +81,9 @@
                             "type": "text"
                         }
                     },
-                    "type": "keyword"
+                    "type": "keyword",
+                    "doc_values": true,
+                    "store": true
                 }
             }
         }
