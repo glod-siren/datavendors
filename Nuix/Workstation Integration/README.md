@@ -16,7 +16,7 @@ SirenNLP is used to Extract Emails, Cyrpto, URLs, and Phone Numbers, however Nui
 
 ## Requirements
 
-- Nuix Workstation 9.x and Above <https://www.nuix.com/>
+- Nuix Workstation 9.x and Above <https://www.nuix.com/>, There is Currently No License Restrictions (LE/IR/ED Licenses OK) However Future Enhanchments will Involve eDiscovery Workstation Licence to Utilize Legal Export.
 - Elasticsearch with Siren Federate and SirenNLP Plugins <https://siren.io/downloads/?product=siren-federate>
 - Siren Investigate <https://siren.io/getting%20started/>
 
