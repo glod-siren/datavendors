@@ -1,10 +1,30 @@
 import { DataIndexResults, InputSchema, OutputConfiguration, ServiceDefinition, WebServiceError } from '@sirensolutions/web-service-interface';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+
+const cryptoRegexPatterns = {
+    'BTC': '^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$', // Bitcoin (BTC) including bech32 addresses
+    'ETH': '^(?:0x)?[a-fA-F0-9]{40,42}$', // Ethereum
+    'USDT': '^1[1-9][a-zA-Z0-9]{24,33}$', // Tether
+    'XRP': '^r[0-9a-zA-Z]{24,34}$', // Ripple
+    'BNB': '^bnb[0-9a-zA-Z]{38}$', // Binance Coin
+    'ADA': '^Ae2tdPwUPEYy{44}$', // Cardano
+    'SOL': '^So[1-9][0-9a-zA-Z]{48}$', // Solana
+    'DOGE': '^D[0-9a-fA-F]{32}$', // Dogecoin
+    'TRX': '^T[0-9a-fA-F]{33}$', // Tron
+    'LTC': '^L[a-km-zA-HJ-NP-Z1-9]{26,33}$', // Litecoin
+    'DOT': '^1[a-zA-Z0-9]{31}$', // Polkadot
+    'LINK': '^0x[a-fA-F0-9]{40}$', // Chainlink
+    'XLM': '^G[A-Z0-9]{55}$', // Stellar Lumens
+    'XMR': '^4[0-9A-Za-z]{94}$', // Monero
+    'ATOM': '^cosmos1[a-z0-9]{38}$', // Cosmos
+    // Add more patterns here for other cryptocurrencies
+};
+
 export default class ClusterCombinedInfo extends ServiceDefinition {
     readonly name = 'cluster_combined_info';
     readonly inputSchema: InputSchema = {
         address: { type: 'text', required: true },
-        asset: { type: 'text', required: true },
+        asset: { type: 'text', required: false },
         outputAsset: { type: 'text', required: false },
     };
     readonly outputConfiguration: OutputConfiguration = {
@@ -20,19 +40,32 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
                 'totalFeesAmount': 'long'
             }
         },
-        addresses: {},
-        pagination: {
-            'nextPage': 'keyword'
-        }
+        addresses: {}
     };
+
+    inferAssetType(address: string): string {
+        for (const [asset, pattern] of Object.entries(cryptoRegexPatterns)) {
+            const regex = new RegExp(pattern);
+            if (regex.test(address)) {
+                return asset;
+            }
+        }
+        throw new WebServiceError('Could not infer asset type from address');
+    }
+
     async invoke(inputs: {
         address: string,
         asset: string,
         outputAsset: string,
-        page: string
     }): Promise<DataIndexResults> {
+        // If asset is not provided, infer it
+        if (!inputs.asset) {
+            inputs.asset = this.inferAssetType(inputs.address);
+        }
+
         if (!inputs.outputAsset) { inputs.outputAsset = 'NATIVE' }
-        let name_url = `https://iapi.chainalysis.com/clusters/${inputs.address}?filterAsset=${inputs.asset}`
+
+        let name_url = `https://iapi.chainalysis.com/clusters/${inputs.address}?filterAsset=${inputs.asset}`;
         const name_config: AxiosRequestConfig = {
             method: 'get',
             url: name_url,
@@ -42,54 +75,8 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
             }
         };
         const name_response: AxiosResponse = await axios(name_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        let address_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/addresses?size=100`
-        if (inputs.page) {
-            address_url + address_url + `&page=${inputs.page}`
-        }
-        if (!inputs.page) { inputs.outputAsset = 'NATIVE' }
-        const address_config: AxiosRequestConfig = {
-            method: 'get',
-            url: address_url,
-            headers: {
-                'Accept': 'application/json',
-                'token': this.config.token
-            }
-        };
-        const address_response: AxiosResponse = await axios(address_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        let nextPage = '';
-        if (address_response.data.nextPage != null) {
-            let page = address_response.data.nextPage
-            let lastResult = { nextPage: '' };
-            do {
-                try {
-                    let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/addresses?size=100` + `&page=${page}`
-                    const sub_config: AxiosRequestConfig = {
-                        method: 'get',
-                        url: sub_url,
-                        headers: {
-                            'Accept': 'application/json',
-                            'token': this.config.token
-                        }
-                    };
-                    const sub_response: AxiosResponse = await axios(sub_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-                    lastResult = sub_response.data;
-                    address_response.data.items.push.apply(address_response.data.items, sub_response.data.items)
-                } catch { new WebServiceError('pagination error') }
-            } while (lastResult.nextPage !== null && address_response.data.items.length <= 400)
-            if (lastResult.nextPage !== null || lastResult.nextPage !== '') {
-                nextPage = lastResult.nextPage
-            }
-        }
-        const denormAddress: string[] = [];
-        for (let y = 0; y < address_response.data.items.length; y++) {
-            denormAddress.push(`${address_response.data.asset}:${address_response.data.items[y].address}`)
-            Object.assign(address_response.data.items[y], {
-                rootAddress: address_response.data.rootAddress,
-                asset: address_response.data.asset,
-                id: `${address_response.data.asset}:${address_response.data.items[y].address}`
-            });
-        }
-        let balance_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/summary?outputAsset=${inputs.outputAsset}`
+
+        let balance_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/summary?outputAsset=${inputs.outputAsset}`;
         const balance_config: AxiosRequestConfig = {
             method: 'get',
             url: balance_url,
@@ -99,25 +86,24 @@ export default class ClusterCombinedInfo extends ServiceDefinition {
             }
         };
         const balance_response: AxiosResponse = await axios(balance_config).catch(err => Promise.reject(err.response && err.response.status < 500 ? new WebServiceError(err.response.data) : err));
-        let items_truncated = false
-        if (address_response.data.items.length < balance_response.data.addressCount) {
-            items_truncated = true
-        }
+
+        let rootAddress = balance_response.data.rootAddress; // Get rootAddress from balance_response
+
         return {
             cluster: [{
-                id: address_response.data.asset + ':' + address_response.data.rootAddress,
+                id: inputs.asset + ':' + rootAddress,
                 name: name_response.data.items[0].name,
                 category: name_response.data.items[0].category,
-                rootAddress: address_response.data.rootAddress,
-                asset: address_response.data.asset,
+                rootAddress: rootAddress,
+                asset: inputs.asset,
                 cluster_balance: balance_response.data,
-                addresses_truncated: items_truncated,
             }],
-            pagination: [{
-                nextPage: nextPage,
-                truncated: items_truncated,
-            }],
-            addresses: address_response.data.items
+            addresses: [{
+                id: inputs.asset + ':' + inputs.address,
+                address: inputs.address,
+                asset: inputs.asset,
+                rootAddress: rootAddress,
+            }]
         }
     }
 }
