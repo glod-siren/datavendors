@@ -4,7 +4,6 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 const cryptoRegexPatterns = {
     'BTC': '^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$', // Bitcoin (BTC) including bech32 addresses
     'ETH': '^(?:0x)?[a-fA-F0-9]{40,42}$', // Ethereum
-    'USDT': '^1[1-9][a-zA-Z0-9]{24,33}$', // Tether
     'XRP': '^r[0-9a-zA-Z]{24,34}$', // Ripple
     'BNB': '^bnb[0-9a-zA-Z]{38}$', // Binance Coin
     'ADA': '^Ae2tdPwUPEYy{44}$', // Cardano
@@ -19,7 +18,6 @@ const cryptoRegexPatterns = {
     'ATOM': '^cosmos1[a-z0-9]{38}$', // Cosmos
     // Add more patterns here for other cryptocurrencies
 };
-
 export default class ClusterObservations extends ServiceDefinition {
     readonly name = 'cluster_observations';
     readonly inputSchema: InputSchema = {

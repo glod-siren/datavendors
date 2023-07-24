@@ -4,7 +4,6 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 const cryptoRegexPatterns = {
   'BTC': '^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$', // Bitcoin (BTC) including bech32 addresses
   'ETH': '^(?:0x)?[a-fA-F0-9]{40,42}$', // Ethereum
-  'USDT': '^1[1-9][a-zA-Z0-9]{24,33}$', // Tether
   'XRP': '^r[0-9a-zA-Z]{24,34}$', // Ripple
   'BNB': '^bnb[0-9a-zA-Z]{38}$', // Binance Coin
   'ADA': '^Ae2tdPwUPEYy{44}$', // Cardano
@@ -91,26 +90,19 @@ export default class ClusterAddresses extends ServiceDefinition {
           page = lastResult.nextPage; // Update the page after all items have been processed for the current page.
           pageCounter += 1;
         }
-        for (let y = 0; y < response.data.items.length; y++) {
-          Object.assign(response.data.items[y], {
-            rootAddress: response.data.rootAddress,
-            asset: response.data.asset,
-            id: `${response.data.asset}:${response.data.items[y].address}`
-          });
-        }
-        overallResults.push.apply(overallResults, response.data.items);
-        if (lastResult.nextPage !== null) {
-          overallTruncated = true
-          overallNextPage = lastResult.nextPage
-        }
+        overallNextPage = lastResult.nextPage
       }
-      
-    }
-    interface MyObject {
-      id: number; 
+      for (let y = 0; y < response.data.items.length; y++) {
+        Object.assign(response.data.items[y], {
+          rootAddress: response.data.rootAddress,
+          asset: response.data.asset,
+          id: `${response.data.asset}:${response.data.items[y].address}`
+        });
+      }
+      overallResults.push.apply(overallResults, response.data.items);
     }
     return {
-      addresses: Object.values(overallResults.reduce((acc: { [key: number]: MyObject }, obj: MyObject) => ({ ...acc, [obj.id]: obj }), {})),
+      addresses: overallResults,
       pagination: [{
         totalresults: overallResults.length,
         nextPage: overallNextPage
