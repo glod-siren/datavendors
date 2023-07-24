@@ -8,7 +8,7 @@ const {
 } = Eui;
 const config = {
     expandRelations: [
-    ], 
+    ],
     titleText: "Chainalysis IAPI - Cluster",
     destination: "Chainalysis Clusters",
     secondsearch: "web-service-chainalysis-iapi-cluster_counterparties-results-counterparties",
@@ -18,6 +18,26 @@ const config = {
     WSReturnData: true,
     bannerUrl: 'https://www.chainalysis.com/wp-content/uploads/2022/05/solution-header-investigations.svg'
 }
+const cryptoRegexPatterns = {
+    'BTC': '(?<=^|\\s|\'|"|:)((bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39})(?=$|\\s|,|\'|"|:)', // Bitcoin (BTC) including bech32 addresses
+    'ETH': '(?<=^|\\s|\'|"|:)((?:0x)?[a-fA-F0-9]{40,42})(?=$|\\s|,|\'|"|:)', // Ethereum
+    'USDT': '(?<=^|\\s|\'|"|:)(1[1-9][a-zA-Z0-9]{24,33})(?=$|\\s|,|\'|"|:)', // Tether
+    'XRP': '(?<=^|\\s|\'|"|:)(r[0-9a-zA-Z]{24,34})(?=$|\\s|,|\'|"|:)', // Ripple
+    'BNB': '(?<=^|\\s|\'|"|:)(bnb[0-9a-zA-Z]{38})(?=$|\\s|,|\'|"|:)', // Binance Coin
+    'ADA': '(?<=^|\\s|\'|"|:)(Ae2tdPwUPEYy{44})(?=$|\\s|,|\'|"|:)', // Cardano
+    'SOL': '(?<=^|\\s|\'|"|:)(So[1-9][0-9a-zA-Z]{48})(?=$|\\s|,|\'|"|:)', // Solana
+    'DOGE': '(?<=^|\\s|\'|"|:)(D[0-9a-fA-F]{32})(?=$|\\s|,|\'|"|:)', // Dogecoin
+    'TRX': '(?<=^|\\s|\'|"|:)(T[0-9a-fA-F]{33})(?=$|\\s|,|\'|"|:)', // Tron
+    'LTC': '(?<=^|\\s|\'|"|:)(L[a-km-zA-HJ-NP-Z1-9]{26,33})(?=$|\\s|,|\'|"|:)', // Litecoin
+    'DOT': '(?<=^|\\s|\'|"|:)(1[a-zA-Z0-9]{31})(?=$|\\s|,|\'|"|:)', // Polkadot
+    'LINK': '(?<=^|\\s|\'|"|:)(0x[a-fA-F0-9]{40})(?=$|\\s|,|\'|"|:)', // Chainlink
+    'XLM': '(?<=^|\\s|\'|"|:)(G[A-Z0-9]{55})(?=$|\\s|,|\'|"|:)', // Stellar Lumens
+    'XMR': '(?<=^|\\s|\'|"|:)(4[0-9A-Za-z]{94})(?=$|\\s|,|\'|"|:)', // Monero
+    'ATOM': '(?<=^|\\s|\'|"|:)(cosmos1[a-z0-9]{38})(?=$|\\s|,|\'|"|:)', // Cosmos
+    // Add more patterns here for other cryptocurrencies
+  };  
+  
+
 var ids = []
 function ModalContentElement() {
     const [showLoading, setLoading] = React.useState(true);
@@ -29,6 +49,22 @@ function ModalContentElement() {
     const [selectedNodes, setSelectedNodes] = React.useState([]);
     const [foundNodes, setFoundNodes] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState('');  // Added for better error handling
+    function matchAndCollectAddresses(obj) {
+        const str = JSON.stringify(obj);
+        let newAddresses = [];
+      
+        Object.entries(cryptoRegexPatterns).forEach(([crypto, pattern]) => {
+          const regex = new RegExp(pattern, 'g');
+          const matches = [...str.matchAll(regex)];
+          if (matches.length) {
+            newAddresses = [...newAddresses, ...matches.map(match => match[0])];
+          }
+        });
+      
+        // Deduplicate the collectedAddresses
+        const deduplicatedAddresses = Array.from(new Set(newAddresses));
+        return deduplicatedAddresses;
+      }
 
     const getSelectedNodes = async () => {
         let temp = await currentVisualization.selection();
@@ -38,6 +74,7 @@ function ModalContentElement() {
             setLoaded(true);
             setLoading(false);
         }
+        
     };
     if (!foundNodes) {
         getSelectedNodes();
@@ -54,10 +91,11 @@ function ModalContentElement() {
             return;
         }
         try {
-            console.log(selectedNodes)
+            const collectedAddresses = matchAndCollectAddresses(selectedNodes);
+            console.log(collectedAddresses)
             setSelectedCount(selectedNodes.length)
-            console.log('Running Web Services')
             await Promise.all(selectedNodes.map(async node => {
+                console.log(node)
                 setInvocated(true)
                 ids.push(node.id)
                 const invocation = await sirenapi.invokeWebService(
@@ -69,8 +107,6 @@ function ModalContentElement() {
                     { storeData: config.WSStoreData, returnData: config.WSReturnData }
                 )
                 console.log(node.label + ' ' + invocation.statusText)
-                console.log(invocation.data.cluster)
-                console.log(invocation.data.addresses)
                 console
                 if (invocation.statusText == 'OK') {
                     setResultCount(resultCount + invocation.data.cluster.length)
@@ -146,10 +182,10 @@ currentDashboard.openModal({
     titleText: config.titleText,
     primaryText: "Expand Node",
     onPrimaryClick: () => {
-            currentVisualization.expandByRelation({
-                nodeIds: [],
-                relationIds: config.expandRelations
-            })
+        currentVisualization.expandByRelation({
+            nodeIds: [],
+            relationIds: config.expandRelations
+        })
     },
     cancelText: "Close Panel",
     onCancel: () => {
