@@ -62,9 +62,9 @@ export default class ClusterCounterparties extends ServiceDefinition {
   }): Promise<DataIndexResults> {
     if (!inputs.asset) { inputs.asset = this.inferAssetType(inputs.address); }
     if (!inputs.outputAsset) { inputs.outputAsset = 'NATIVE' }
-    let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}`
+    let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?size=400&outputAsset=${inputs.outputAsset}`
     if (inputs.page) {
-      url += `?page=${inputs.page}`
+      url += `&page=${inputs.page}`
     }
     const config: AxiosRequestConfig = {
       method: 'get',
@@ -84,7 +84,7 @@ export default class ClusterCounterparties extends ServiceDefinition {
       let pagesFetched = 0;
       do {
         try {
-          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?outputAsset=${inputs.outputAsset}&page=${page}`;
+          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${inputs.asset}/counterparties?size=400&outputAsset=${inputs.outputAsset}&page=${page}`;
           const sub_config: AxiosRequestConfig = {
             method: 'get',
             url: sub_url,

@@ -76,8 +76,8 @@ export default class AddressTransactions extends ServiceDefinition {
 
         for (const asset of matchedAssets) {
             let base_url = inputs.cluster 
-                ? `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/transactions?size=100`
-                : `https://iapi.chainalysis.com/addresses/${inputs.address}/${asset}/transactions?size=100&direction=${inputs.direction}`;
+                ? `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/transactions?size=400`
+                : `https://iapi.chainalysis.com/addresses/${inputs.address}/${asset}/transactions?size=400&direction=${inputs.direction}`;
             if (inputs.cluster_startTime) {base_url = base_url + `&startTime=${inputs.cluster_startTime}` }
             if (inputs.cluster_endTime) { base_url = base_url + `&endTime=${inputs.cluster_endTime}` }
             if (inputs.cluster_counterparty) { base_url = base_url + `&counterparty=${inputs.cluster_counterparty}` }

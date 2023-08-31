@@ -52,9 +52,9 @@ export default class ClusterAddresses extends ServiceDefinition {
     let overallTruncated = false;
 
     for (const asset of matchedAssets) {
-      let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/addresses`;
+      let url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/addresses?size=400`;
       if (inputs.page) {
-        url = url + `?page=${inputs.page}`;
+        url = url + `&page=${inputs.page}`;
       }
       const config: AxiosRequestConfig = {
         method: 'get',
@@ -74,7 +74,7 @@ export default class ClusterAddresses extends ServiceDefinition {
         let pageCounter = 0;
 
         while (lastResult.nextPage !== null && pageCounter < pageLimit) {
-          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/addresses?page=${page}`;
+          let sub_url = `https://iapi.chainalysis.com/clusters/${inputs.address}/${asset}/addresses?size=400&page=${page}`;
           const sub_config: AxiosRequestConfig = {
             method: 'get',
             url: sub_url,

@@ -96,7 +96,7 @@ function ModalContentElement() {
                 wsquery = {
                     address: address,
                     cluster: true,
-                    page_limit: 25,
+                    page_limit: 10,
                 }
                 // here i would add custom asset or anything else to wsquery if needed  // custom for this endpoint
                 const invocation = await sirenapi.invokeWebService(
@@ -110,12 +110,13 @@ function ModalContentElement() {
                 if (invocation.data.transaction.length > 0) {
                     setResults(results => [...results, ...invocation.data.transaction]) // custom for this endpoint
                 }
-                if (invocation.data.pagination.nextPage !== '') {
-                    setPage(invocation.data.pagination.nextPage) // custom for this endpoint
-                    let lastPagination = invocation.data.pagination.nextPage
-                    let counter = 0
+                if (invocation.data.pagination[0].nextPage !== '' && invocation.data.pagination[0].nextPage !== null) {
+                    setPage(invocation.data.pagination[0].nextPage) // custom for this endpoint
+                    let counter = 1
                     do {
+                        console.log('Starting Pagination #' + counter + ' pageid: ' + JSON.stringify(lastPagination))
                         Object.assign(wsquery, { page: lastPagination })
+                        console.log(wsquery)
                         const sub_invocation = await sirenapi.invokeWebService(
                             config.WSName,
                             config.WSType,
@@ -123,14 +124,15 @@ function ModalContentElement() {
                             { storeData: config.WSStoreData, returnData: config.WSReturnData }
                         )
                         console.log(address + ' ' + sub_invocation.statusText)
-                        lastPagination = sub_invocation.data.pagination.nextPage
+                        lastPagination = sub_invocation.data.pagination[0].nextPage
                         if (sub_invocation.data.transaction.length > 0) {
                             setResults(results => [...results, ...sub_invocation.data.transaction]) // custom for this endpoint
                         }
+                        console.log('Finished Pagination #' + counter + ' pageid: ' + JSON.stringify(lastPagination))
                         counter++
-                    } while (lastPagination !== '' && counter < 40)
+                    } while (lastPagination !== '' && lastPagination !== null && counter < 6)
                     if (lastPagination !== '') {
-                        setErrorMessage('Results Truncated to 1000 Pages For Demo Purposes');
+                        setErrorMessage('Results Truncated For Demo Purposes');
                     }
                 }
                 

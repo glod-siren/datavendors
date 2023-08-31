@@ -50,7 +50,7 @@ export default class IpObservations extends ServiceDefinition {
         page: string,
         page_limit?: number,
     }): Promise<DataIndexResults> {
-        let obs_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=100`;
+        let obs_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=400`;
         if (inputs.page) {
             obs_url = obs_url + `&page=${inputs.page}`;
         }
@@ -78,7 +78,7 @@ export default class IpObservations extends ServiceDefinition {
             let pagesFetched = 0;
             do {
                 try {
-                    let sub_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=100` + `&page=${page}`;
+                    let sub_url = `https://iapi.chainalysis.com/observations/ips/${inputs.ip}?size=400` + `&page=${page}`;
                     const sub_config: AxiosRequestConfig = {
                         method: 'get',
                         url: sub_url,
