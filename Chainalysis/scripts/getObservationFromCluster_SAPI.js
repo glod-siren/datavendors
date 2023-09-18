@@ -6,6 +6,10 @@ const {
     EuiText,
     EuiImage
 } = Eui;
+const scriptinfo = {
+    revision: "2023_07",
+    type: "graph"
+};
 const config = {
     expandRelations: [
     ],
@@ -19,7 +23,7 @@ const config = {
 }
 const cryptoRegexPatterns = {
     'BTC': '(?<=^|\\s|\'|"|:)((bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39})(?=$|\\s|,|\'|"|:)', // Bitcoin (BTC) including bech32 addresses
-    'ETH': '(?<=^|\\s|\'|"|:|x)([a-fA-F0-9]{40,42})(?=$|\\s|,|\'|"|:)', // Ethereum
+    'ETH': '(?<=^|\\s|\'|"|:)(0x[a-fA-F0-9]{38,44})(?=$|\\s|,|\'|"|:)', // Ethereum
     'XRP': '(?<=^|\\s|\'|"|:)(r[0-9a-zA-Z]{24,34})(?=$|\\s|,|\'|"|:)', // Ripple
     'BNB': '(?<=^|\\s|\'|"|:)(bnb[0-9a-zA-Z]{38})(?=$|\\s|,|\'|"|:)', // Binance Coin
     'ADA': '(?<=^|\\s|\'|"|:)(Ae2tdPwUPEYy{44})(?=$|\\s|,|\'|"|:)', // Cardano

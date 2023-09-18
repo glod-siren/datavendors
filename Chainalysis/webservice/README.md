@@ -12,7 +12,7 @@ This web service driver consists of services for the chainalysis-iapi service gr
 # Development
 See [here](https://www.npmjs.com/package/@sirensolutions/web-service-interface) for information on how to develop web services for Investigate.
 
-This web service driver consists of many services in a group (`ClusterCounterparties`,`ClusterCombinedInfo`,`AddressTransactions`,`ClusterObservations`, `ClusterTransactions`, `IpObservations`) registered by the [`index.ts`](src/index.ts) module. Example: Edit the [`ClusterCombinedInfo.ts`](src/ClusterCombinedInfo.ts) module to specify the inputs and outputs, and to query the web API you want to get data from.
+This web service driver consists of many services in a group (`ClusterCounterparties`,`ClusterCombinedInfo`,`ClusterBalance`,`AddressTransactions`,`ClusterObservations`,`ClusterExposure`, `IpObservations`) registered by the [`index.ts`](src/index.ts) module. Example: Edit the [`ClusterCombinedInfo.ts`](src/ClusterCombinedInfo.ts) module to specify the inputs and outputs, and to query the web API you want to get data from.
 
 You can test the service using the `invoke` script:
 ```bash
@@ -39,13 +39,10 @@ To install these services into Investigate:
 
 This project was first generated with Siren's [generator for web service drivers](https://www.npmjs.com/package/@sirensolutions/generator-web-service).
 
-# To Do as of 02/26/2023
-1. Fix Modal Feedback Counts
-2. Run Unlimited Pagination In Invocations (Currently Truncated at 400 (4x100))
-3. Put Cluster Addresses Into Another Index
-4. Overview Panes To Mirror Info From Reactor
-5. Dashboard with Search Driven By Scripted Panel
-6. Address Transaction
-7. Official Icons
-8. Documentation
-9. Allow Filters On Transactions (Cluster and Address)
+# To Do as of 2023-09-18
+1. Advanced Search Option to Manually Specify Asset Type Instead of Auto Resolving
+2. Send Larger Pagination to a Second Ingestion Service (Logstash)
+3. Overview Panes To Mirror Info From Reactor and improve UX
+4. Dashboard with Search Driven By Scripted Panel
+5. Allow Filters On Transactions (Cluster and Address And Date)
+6. Automation of Ingestion of Counterparties and Addresses through secondary ingestion service

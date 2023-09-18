@@ -6,6 +6,10 @@ const {
     EuiText,
     EuiImage
 } = Eui;
+const scriptinfo = {
+    revision: "2023_03",
+    type: "graph"
+};
 const config = {
     expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank

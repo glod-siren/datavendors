@@ -6,6 +6,10 @@ const {
     EuiText,
     EuiImage
 } = Eui;
+const scriptinfo = {
+    revision: "2023_07",
+    type: "graph"
+};
 const config = {
     expandRelations: [
     ], // give relationids if you dont want to show modal, otherwise leave blank
@@ -19,7 +23,7 @@ const config = {
 }
 cryptoRegexPatterns = {
     'BTC': '(?<=^|\\s|\'|"|:)((bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39})(?=$|\\s|,|\'|"|:)', // Bitcoin (BTC) including bech32 addresses
-    'ETH': '(?<=^|\\s|\'|"|:|x)([a-fA-F0-9]{40,42})(?=$|\\s|,|\'|"|:)', // Ethereum
+    'ETH': '(?<=^|\\s|\'|"|:)(0x[a-fA-F0-9]{38,44})(?=$|\\s|,|\'|"|:)', // Ethereum
     'XRP': '(?<=^|\\s|\'|"|:)(r[0-9a-zA-Z]{24,34})(?=$|\\s|,|\'|"|:)', // Ripple
     'BNB': '(?<=^|\\s|\'|"|:)(bnb[0-9a-zA-Z]{38})(?=$|\\s|,|\'|"|:)', // Binance Coin
     'ADA': '(?<=^|\\s|\'|"|:)(Ae2tdPwUPEYy{44})(?=$|\\s|,|\'|"|:)', // Cardano
@@ -96,7 +100,7 @@ function ModalContentElement() {
                 wsquery = {
                     address: address,
                     direction: 'SENDING',
-                    page_limit: 200,
+                    page_limit: 400,
                 }
                 // here i would add custom asset or anything else to wsquery if needed  // custom for this endpoint
                 const invocation = await sirenapi.invokeWebService(
@@ -128,7 +132,7 @@ function ModalContentElement() {
                             setResults(results => [...results, ...sub_invocation.data.transaction]) // custom for this endpoint
                         }
                         counter++
-                    } while (lastPagination !== '' && counter < 40)
+                    } while (lastPagination !== '' && counter < 20)
                     if (lastPagination !== '') {
                         setErrorMessage('Results Truncated to 1000 Pages For Demo Purposes');
                     }

@@ -6,6 +6,10 @@ const {
     EuiText,
     EuiImage
 } = Eui;
+const scriptinfo = {
+    revision: "2023_07",
+    type: "graph"
+};
 const config = {
     expandRelations: [
     ],
@@ -19,7 +23,8 @@ const config = {
 }
 const cryptoRegexPatterns = {
     'BTC': '(?<=^|\\s|\'|"|:)((bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39})(?=$|\\s|,|\'|"|:)', // Bitcoin (BTC) including bech32 addresses
-    'ETH': '(?<=^|\\s|\'|"|:|x)([a-fA-F0-9]{40,42})(?=$|\\s|,|\'|"|:)', // Ethereum
+    'ETH': '(?<=^|\\s|\'|"|:)(0x[a-fA-F0-9]{38,44})(?=$|\\s|,|\'|"|:)', // Ethereum
+    'USDT': '(?<=^|\\s|\'|"|:)(1[1-9][a-zA-Z0-9]{24,33})(?=$|\\s|,|\'|"|:)', // Tether
     'XRP': '(?<=^|\\s|\'|"|:)(r[0-9a-zA-Z]{24,34})(?=$|\\s|,|\'|"|:)', // Ripple
     'BNB': '(?<=^|\\s|\'|"|:)(bnb[0-9a-zA-Z]{38})(?=$|\\s|,|\'|"|:)', // Binance Coin
     'ADA': '(?<=^|\\s|\'|"|:)(Ae2tdPwUPEYy{44})(?=$|\\s|,|\'|"|:)', // Cardano
@@ -93,34 +98,24 @@ function ModalContentElement() {
             if (collectedAddresses.length > 0) {
                 setSearchedCount(collectedAddresses.length)
             }
-            let index = 0;
-            const intervalId = setInterval(async () => {
-                if (index < collectedAddresses.length) {
-                    const address = collectedAddresses[index];
-                    wsquery = {
-                        address: address
-                    }
-                    // here i would add custom asset or anything else to wsquery if needed  // custom for this endpoint
-                    const invocation = await sirenapi.invokeWebService(
-                        config.WSName,
-                        config.WSType,
-                        wsquery,
-                        { storeData: config.WSStoreData, returnData: config.WSReturnData }
-                    )
-                    console.log(address + ' ' + invocation.statusText)
-                    if (invocation.data.cluster.length > 0) {
-                        setResults(results => [...results, ...invocation.data.cluster]) // custom for this endpoint
-                        myaddresses.push.apply(invocation.data.addresses) // custom for this endpoint
-                        console.log(invocation.data)
-                    }
-                    index++;
-                } else {
-                    clearInterval(intervalId);
-                    console.log('Done with Web Services')
-                    setLoaded(true)
-                    setLoading(false)
+            await Promise.all(collectedAddresses.map(async address => {
+                wsquery = {
+                    address: address
                 }
-            }, 1000).then(function () {
+                // here i would add custom asset or anything else to wsquery if needed  // custom for this endpoint
+                const invocation = await sirenapi.invokeWebService(
+                    config.WSName,
+                    config.WSType,
+                    wsquery,
+                    { storeData: config.WSStoreData, returnData: config.WSReturnData }
+                )
+                console.log(address + ' ' + invocation.statusText)
+                if (invocation.data.cluster.length > 0) {
+                    setResults(results => [...results, ...invocation.data.cluster]) // custom for this endpoint
+                    myaddresses.push.apply(invocation.data.addresses) // custom for this endpoint
+                    console.log(invocation.data)
+                }
+            })).then(function () {
                 console.log('Done with Web Services')
                 setLoaded(true)
                 setLoading(false)
